@@ -1,10 +1,8 @@
 /*
  * 제작 인원: 나세종, 호재영, 이재준
  */
-package DataBaseJob;
+package database;
 
-
-import java.util.List;
 
 public class UserDTO {
     

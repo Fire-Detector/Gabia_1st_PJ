@@ -7,13 +7,13 @@
 /*
     아이템 보여주고 1번째는 아이템 번호, 2번째는 아이템 이름 
 */
-package Frame;
+package frame;
 
 import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.*;
+
 /**
  *
  * @author 솔데스크

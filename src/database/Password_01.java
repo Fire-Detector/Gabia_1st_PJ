@@ -1,4 +1,4 @@
-package DataBaseJob;
+package database;
 
 /*
  * 제작 인원: 이재준

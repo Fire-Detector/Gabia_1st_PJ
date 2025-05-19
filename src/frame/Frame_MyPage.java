@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frame;
+package frame;
 
+import database.UserDAO;
+import database.UserDTO;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -42,8 +43,6 @@ public class Frame_MyPage extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Btn_Selec = new javax.swing.JButton();
-        DB_Connect DB = new DB_Connect();
-        DB.getConnection();
         ArrayList<UserDTO> userList = UserDAO.getAllUser();
         UserDTO disk = userList.get(0);
         Object[][] data = new Object[userList.size()][5];

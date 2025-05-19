@@ -3,7 +3,7 @@
     현재 카테고리는 6개로 확인
     눌렀을 경우 이동하는 경우는 Action Perform에서 메소드 호출 방식
 */
-package Frame;
+package frame;
 
 public class Frame_Select extends javax.swing.JFrame {
 

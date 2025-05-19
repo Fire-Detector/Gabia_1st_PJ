@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frame;
+package frame;
+import static database.SimpleConnectionPool.connectionPool;
 
+import database.UserDAO;
 import java.sql.Connection;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -104,11 +105,11 @@ public class Frame_Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String userid = jTextField1.getText();
         String inputPw = new String(jPasswordField1.getPassword());
-        DB_Connect con = new DB_Connect();
+        Connection conn = connectionPool.getConnection();
         Frame_MyPage Page = new Frame_MyPage();
-        con.getConnection();
+        UserDAO userDAO = new UserDAO();
 
-        if (con.login(userid, inputPw)) {
+        if (userDAO.login(userid, inputPw)) {
             JOptionPane.showMessageDialog(this, "로그인 성공");
             dispose();
             new Frame_Select().setVisible(true);
@@ -124,8 +125,6 @@ public class Frame_Login extends javax.swing.JFrame {
     private void Btn_RegisterActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         Frame_Register main = new Frame_Register();
-        DB_Connect db = new DB_Connect();
-        db.getConnection();
         dispose();
         main.setVisible(true);
         // 현재 구문에서 버튼을 클릭하면 이벤트 발생 함수 삽입

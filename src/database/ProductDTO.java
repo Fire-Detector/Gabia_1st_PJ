@@ -1,7 +1,7 @@
 /*
  * 제작 인원: 호재영, 이재준
  */
-package DataBaseJob;
+package database;
 
 //DTO (데이터 전달 객체) -> 하나의 GPU정보를 담을 객체 설계도. DB테이블의 행 1개 = GPU객체 1개
 public class ProductDTO {

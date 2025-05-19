@@ -1,8 +1,11 @@
-package DataBaseJob;
+package database;
+
+import static database.SimpleConnectionPool.connectionPool;
 
 import java.sql.*;           // DB 연결, 쿼리, 결과 처리 등
 import java.util.ArrayList; // 리스트 만들기
-import java.util.List;      // 리스트 타입을 다루기 위한 인터페이스
+import java.util.List;
+
 
 //DAO (데이터 접근 객체) -> DB에 직접 접근하는 객체
 public class UserDAO {
@@ -13,6 +16,74 @@ public class UserDAO {
         return DriverManager.getConnection(
             "jdbc:oracle:thin:@localhost:1521:xe", "member", "12345"
         );
+    }
+
+    // 로그인 파트: 이재준
+    public boolean login(String userid, String inputPw) {
+        boolean result = false;
+        Password_01 userDto = null;
+
+        try {
+            String sql = "SELECT member_id ,password FROM usertbl WHERE member_id=?";
+            PreparedStatement pstmt = getConnection().prepareStatement(sql);
+            pstmt.setString(1, userid);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                userDto = new Password_01();
+                userDto.setUserid(rs.getString("member_id"));
+                userDto.setPassword(rs.getString("password"));
+
+                if (userDto.getPassword().equals(inputPw)) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
+    //마이페이지 창: 나세종, 호재영, 이재준
+    public UserDTO getMyPage(String userId) {
+        final String SQL = """
+            SELECT user_id, user_name, user_phone 
+            FROM user_tbl 
+            WHERE customer_id = ?""";
+
+        try (Connection conn = connectionPool.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next()
+                        ? new UserDTO(
+                        rs.getString("user_id"),
+                        rs.getString("user_name"),
+                        rs.getString("user_phone")
+                )
+                        : null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("마이페이지 조회 실패", e);
+        }
+    }
+
+    // 아이디 중복 확인
+    public boolean isUserIdExist(String userId) {
+        final String SQL = "SELECT 1 FROM usertbl WHERE member_id = ?";
+
+        try (Connection conn = connectionPool.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("아이디 확인 실패", e);
+        }
     }
 
     // 2. GPU 전체 목록 가져오기
@@ -41,5 +112,45 @@ public class UserDAO {
         //5. 리스트 반환
         return list;
     }//getAllGpus()
-    
+    // 로그인 체크: 호재영
+    public boolean IdCheck(String user_id){
+        String sql = "SELECT userid usertbl Values usertbl = ?";
+
+        return false;
+    }
+
+    public boolean isValidPassword(String pw) {
+        if (pw.length() < 8)
+            return false;
+
+        boolean hasLetter = pw.matches(".*[a-zA-Z].*");
+        boolean hasDigit = pw.matches(".*\\d.*");
+        boolean hasSpecial = pw.matches(".*[!@#$%^&*()].*");
+
+        return hasLetter && hasDigit && hasSpecial;
+
+    }
+
+    //아이디 중복확인 : 김정연
+    public boolean IdCheck1(String userid ){
+
+        boolean result = false;
+
+        try {
+            String sql = "SELECT member_id FROM usertbl WHERE member_id=?";
+            PreparedStatement pstmt = getConnection().prepareStatement(sql);
+            pstmt.setString(1, userid);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                javax.swing.JOptionPane.showConfirmDialog(null, "사용중인 아이디 입니다", "중복확인",javax.swing.JOptionPane.WARNING_MESSAGE);
+                return true;
+            }else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+
+    }
 }//c

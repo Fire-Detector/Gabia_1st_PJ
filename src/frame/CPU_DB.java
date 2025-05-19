@@ -1,4 +1,4 @@
-package Frame;
+package frame;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -2,14 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frame;
+package frame;
 
+import static database.SimpleConnectionPool.connectionPool;
+
+import database.UserDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -20,6 +22,7 @@ public class Frame_Register extends javax.swing.JFrame {
      * Creates new form Frame_Register
      */
 	boolean a;
+    UserDAO userDAO = new UserDAO();
     public Frame_Register() {
         initComponents();
     }
@@ -159,18 +162,15 @@ public class Frame_Register extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void Register_IdActionPerformed(java.awt.event.ActionEvent evt) {
-        DB_Connect CheckId = new DB_Connect();
 
-        this.a = CheckId.IdCheck1(Register_Id.getText());
+        this.a = userDAO.IdCheck1(Register_Id.getText());
         System.out.println(a);
 
 
     }
     private void Register_CheckActionPerformed(java.awt.event.ActionEvent evt) {
-        DB_Connect CheckId = new DB_Connect();
-        CheckId.getConnection();
 
-        this.a = CheckId.IdCheck1(Register_Id.getText());
+        this.a = userDAO.IdCheck1(Register_Id.getText());
         System.out.println(a);
 
 
@@ -185,12 +185,11 @@ public class Frame_Register extends javax.swing.JFrame {
         String pw = new String(Register_Password.getPassword());
         String phone = Regsiter_Phone.getText();
         String gender = Radio_Male.isSelected() ? "M" : "F";
-        DB_Connect Vaild = new DB_Connect();
 
         System.out.println(id + " " + pw + " " + phone + " " + gender);
 
         // 1.5. 비밀번호 유효성 검사
-        if (!Vaild.isValidPassword(pw)) {
+        if (!userDAO.isValidPassword(pw)) {
             JOptionPane.showMessageDialog(this, "비밀번호는 8자 이상, 영문자/숫자/특수문자를 포함해야 합니다.");
             return; // 실패 시 아래로 안 내려가고 함수 종료
         }
@@ -200,7 +199,7 @@ public class Frame_Register extends javax.swing.JFrame {
             return; // 실패 시 아래로 안 내려가고 함수 종료
         }
         // 1.5. 성별 유효성 검사
-        if (!Vaild.isValidPassword(gender)) {
+        if (!userDAO.isValidPassword(gender)) {
             JOptionPane.showMessageDialog(this, "비밀번호는 8자 이상, 영문자/숫자/특수문자를 포함해야 합니다.");
             return; // 실패 시 아래로 안 내려가고 함수 종료
         }

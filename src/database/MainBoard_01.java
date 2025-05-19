@@ -1,4 +1,4 @@
-package DataBaseJob;
+package database;
 
 public class MainBoard_01 {
 
