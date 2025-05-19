@@ -105,17 +105,14 @@ public class Frame_Cpu extends javax.swing.JFrame {
         Image scaled1 = cpuImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Cpu1.setIcon(new ImageIcon(scaled1));
         Lbl_Cpu1.setText("");
-        Lbl_Cpu1.setText("그림 넣어주세요1");
         ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\CPU\\cpu2.png");
         Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Cpu2.setIcon(new ImageIcon(scaled2));
         Lbl_Cpu2.setText("");
-        Lbl_Cpu2.setText("그림 넣어주세요2");
         ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\CPU\\cpu3.png");
         Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Cpu3.setIcon(new ImageIcon(scaled3));
         Lbl_Cpu3.setText("");
-        Lbl_Cpu3.setText("그림 넣어주세요3");
 
         Lbl_Name1.setText("이름:");
 

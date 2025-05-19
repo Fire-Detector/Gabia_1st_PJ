@@ -1,10 +1,8 @@
 package database;
 
 import static database.SimpleConnectionPool.connectionPool;
-
 import java.sql.*;           // DB 연결, 쿼리, 결과 처리 등
 import java.util.ArrayList; // 리스트 만들기
-import java.util.List;
 
 
 //DAO (데이터 접근 객체) -> DB에 직접 접근하는 객체
@@ -18,14 +16,14 @@ public class UserDAO {
         Password_01 userDto = null;
 
         try {
-            String sql = "SELECT member_id ,password FROM usertbl WHERE member_id=?";
+            String sql = "SELECT userid ,password FROM usertbl WHERE userid=?";
             PreparedStatement pstmt = connectionPool.getConnection().prepareStatement(sql);
             pstmt.setString(1, userid);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 userDto = new Password_01();
-                userDto.setUserid(rs.getString("member_id"));
+                userDto.setUserid(rs.getString("userid"));
                 userDto.setPassword(rs.getString("password"));
 
                 if (userDto.getPassword().equals(inputPw)) {
@@ -92,9 +90,9 @@ public class UserDAO {
         ) {
         	//4. 결과를 GpuDTO 객체로 변환
             while (rs.next()) {
-                String UserId = rs.getString("gender");
+                String UserId = rs.getString("age");
                 String UserName = rs.getString("name");
-                String UserPhone = rs.getString("phone");
+                String UserPhone = rs.getString("email");
 
                 UserDTO User = new UserDTO(UserId, UserName, UserPhone);// DTO로 포장
                 list.add(User);// 리스트에 넣기
