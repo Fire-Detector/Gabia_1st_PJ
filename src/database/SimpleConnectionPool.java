@@ -10,12 +10,12 @@ public class SimpleConnectionPool {
     private final LinkedList<Connection> pool = new LinkedList<>();
     private final int MAX_POOL_SIZE = 10;
 
-    private final String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    private final String url = "jdbc:mysql://sol-skhu.duckdns.org:3306/gabia_first?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false&useSSL=false&allowPublicKeyRetrieval=true";
     private final String user = "member";
     private final String password = "12345";
 
     public SimpleConnectionPool() throws ClassNotFoundException, SQLException {
-        Class.forName("oracle.jdbc.OracleDriver");
+//        Class.forName("com.mysql.cj.jdbc.Driver");
         for (int i = 0; i < MAX_POOL_SIZE; i++) {
             pool.add(createNewConnection());
         }

@@ -6,34 +6,152 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductDAO {
-    //아이템 정보 보기: 호재영, 이재준
-    public List<ProductDTO> getAllGpus() { // getAllGpus()메소드: GpuDTO객체 리스트를 반환
-        List<ProductDTO> list = new ArrayList<>(); // GpuDTO라는 객체들을 담을 수 있는 비어있는 리스트 생성
-
-        try (
-                // 3. SQL 실행 & 결과 처리
-                PreparedStatement pstmt = connectionPool.getConnection().prepareStatement("SELECT * FROM GPU"); // SQL 실행을 준비하는 PreparedStatement
-                // 생성 ("GPU 테이블 전체 조회" 쿼리 준비)
-                ResultSet rs = pstmt.executeQuery(); // 결과는 rs (ResultSet)에 담김
-        ) {
-            // 4. 결과를 GpuDTO 객체로 변환
-            while (rs.next()) {
-                int id = rs.getInt("productID");
-                String name = rs.getString("name");
-                String perf = rs.getString("performance");
-                int price = rs.getInt("price");
-
-                ProductDTO gpu = new ProductDTO(id, name, perf, price);// DTO로 포장
-                list.add(gpu);// 리스트에 넣기
-            }
+    private Connection connection;
+    
+    public ProductDAO() {
+        try {
+            // 데이터베이스 연결 (예: MySQL)
+            connection = connectionPool.getConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        // 5. 리스트 반환
-        return list;
-    }// getAllGpus()
-
-
+    }
+    
+    // 1. Create (Insert)
+    public int insertProduct(ProductDTO product) {
+        String sql = "INSERT INTO product (product_name, manufacturer, spec, release_date, price, category_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setString(1, product.getProductName());
+            pstmt.setString(2, product.getManufacturer());
+            pstmt.setString(3, product.getSpec());
+            pstmt.setString(4, product.getReleaseDate());
+            pstmt.setInt(5, product.getPrice());
+            pstmt.setInt(6, product.getCategoryId());
+            
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        return rs.getInt(1); // 생성된 product_id 반환
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // 실패 시 -1 반환
+    }
+    
+    // 2. Read (Select All)
+    public List<ProductDTO> selectAllProducts() {
+        List<ProductDTO> products = new ArrayList<>();
+        String sql = "SELECT * FROM product";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                ProductDTO product = mapResultSetToProduct(rs);
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+    
+    // 3. Read (Select By ID)
+    public ProductDTO selectProductById(int productId) {
+        String sql = "SELECT * FROM product WHERE product_id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, productId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSetToProduct(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    // 4. Update
+    public boolean updateProduct(ProductDTO product) {
+        String sql = "UPDATE product SET product_name=?, manufacturer=?, spec=?, release_date=?, price=?, category_id=? " +
+                "WHERE product_id=?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, product.getProductName());
+            pstmt.setString(2, product.getManufacturer());
+            pstmt.setString(3, product.getSpec());
+            pstmt.setString(4, product.getReleaseDate());
+            pstmt.setInt(5, product.getPrice());
+            pstmt.setInt(6, product.getCategoryId());
+            pstmt.setInt(7, product.getProductId());
+            
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    // 5. Delete
+    public boolean deleteProduct(int productId) {
+        String sql = "DELETE FROM product WHERE product_id=?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, productId);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    // 6. ResultSet → ProductDTO 매핑
+    private ProductDTO mapResultSetToProduct(ResultSet rs) throws SQLException {
+        ProductDTO product = new ProductDTO();
+        product.setProductId(rs.getInt("product_id"));
+        product.setProductName(rs.getString("product_name"));
+        product.setManufacturer(rs.getString("manufacturer"));
+        product.setSpec(rs.getString("spec"));
+        product.setReleaseDate(rs.getString("release_date"));
+        product.setPrice(rs.getInt("price"));
+        product.setCategoryId(rs.getInt("category_id"));
+        return product;
+    }
+    
+    // 7. 카테고리별 조회 (추가 메소드)
+    public List<ProductDTO> selectProductsByCategory(int categoryId) {
+        List<ProductDTO> products = new ArrayList<>();
+        String sql = "SELECT * FROM product WHERE category_id=?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, categoryId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    products.add(mapResultSetToProduct(rs));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+    
+    // 연결 종료 (필요 시)
+    public void close() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
