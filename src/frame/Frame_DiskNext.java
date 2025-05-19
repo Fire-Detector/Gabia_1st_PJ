@@ -98,21 +98,21 @@ public class Frame_DiskNext extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
         jLabel2.setText("아이템 추가는 소스에서 추가 가능");
         
-        ImageIcon icon3 = new ImageIcon("C:\\test123\\Git_onboarding\\Fix_Error\\src\\Crucial P5Plus.jpeg");
+        ImageIcon icon3 = new ImageIcon("src\\etc\\img\\Disk\\Crucial P5Plus.jpeg");
         Image Image3 = icon3.getImage();
         Image resizeImage3 = Image3.getScaledInstance( 100, 90, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon3 = new ImageIcon(resizeImage3);
         Lbl_Disk4.setIcon(resizedIcon3);
         Lbl_Disk4.setText("");
         
-        ImageIcon icon4 = new ImageIcon("C:\\test123\\Git_onboarding\\Fix_Error\\src\\Seagate Barracuda 4TB.jpeg");
+        ImageIcon icon4 = new ImageIcon("src\\etc\\img\\Disk\\Seagate Barracuda 4TB.jpeg");
         Image Image4 = icon4.getImage();
         Image resizeImage4 = Image4.getScaledInstance( 100, 90, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon4 = new ImageIcon(resizeImage4);
         Lbl_Disk5.setIcon(resizedIcon4);
         Lbl_Disk5.setText("");
         
-        ImageIcon icon5 = new ImageIcon("C:\\test123\\Git_onboarding\\Fix_Error\\src\\Samsung 870 EVO.jpeg");
+        ImageIcon icon5 = new ImageIcon("src\\etc\\img\\Disk\\Samsung 870 EVO.jpeg");
         Image Image5 = icon5.getImage();
         Image resizeImage5 = Image5.getScaledInstance( 100, 90, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon5 = new ImageIcon(resizeImage5);

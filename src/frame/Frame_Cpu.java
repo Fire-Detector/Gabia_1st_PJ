@@ -101,17 +101,17 @@ public class Frame_Cpu extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
         jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-        ImageIcon cpuImg1 = new ImageIcon("Fix_Error\\src\\cpu1.png");
+        ImageIcon cpuImg1 = new ImageIcon("src\\etc\\img\\CPU\\cpu1.png");
         Image scaled1 = cpuImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Cpu1.setIcon(new ImageIcon(scaled1));
         Lbl_Cpu1.setText("");
         Lbl_Cpu1.setText("그림 넣어주세요1");
-        ImageIcon cpuImg2 = new ImageIcon("Fix_Error\\src\\cpu2.png");
+        ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\CPU\\cpu2.png");
         Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Cpu2.setIcon(new ImageIcon(scaled2));
         Lbl_Cpu2.setText("");
         Lbl_Cpu2.setText("그림 넣어주세요2");
-        ImageIcon cpuImg3 = new ImageIcon("Fix_Error\\src\\cpu3.png");
+        ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\CPU\\cpu3.png");
         Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Cpu3.setIcon(new ImageIcon(scaled3));
         Lbl_Cpu3.setText("");

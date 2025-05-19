@@ -19,7 +19,7 @@ public class Frame_Login extends javax.swing.JFrame {
      * Creates new form Frame_Login
      */
     public Frame_Login() {
-        setContentPane(new BackgroundPanel("C:/Users/rsung/OneDrive/바탕 화면/Git_onboarding-main/Git_onboarding-main/Fix_Error/src/GearTop.png"));
+        setContentPane(new BackgroundPanel("src\\etc\\img\\General\\/GearTop.png"));
         initComponents();
     }
 
