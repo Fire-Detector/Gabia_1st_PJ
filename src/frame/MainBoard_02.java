@@ -1,7 +1,8 @@
 package frame;
 
+import static database.SimpleConnectionPool.connectionPool;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -34,11 +35,10 @@ public class MainBoard_02 {
     public static ArrayList<MainBoard_02> getMainBoardList() {
         ArrayList<MainBoard_02> list = new ArrayList<>();
         try {
-        	Connection con = DriverManager.getConnection(
-        	"jdbc:oracle:thin:@localhost:1521:xe", "admin", "12345");
+            Connection conn = connectionPool.getConnection();
             
             String sql = "SELECT * FROM mainboard";
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -54,7 +54,7 @@ public class MainBoard_02 {
             System.out.println(list);
             rs.close();
             pstmt.close();
-            con.close();
+            conn.close();
             
         } catch (Exception e) {
             e.printStackTrace();

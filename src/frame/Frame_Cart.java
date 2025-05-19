@@ -4,10 +4,11 @@
  */
 package frame;
 
+import static database.SimpleConnectionPool.connectionPool;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -26,8 +27,7 @@ public class Frame_Cart extends javax.swing.JFrame {
     DefaultTableModel model = (DefaultTableModel) Tbl_Cart.getModel();
     model.setRowCount(0); // 기존 데이터 삭제
 
-    try (Connection conn = DriverManager.getConnection(
-         "jdbc:oracle:thin:@localhost:1521:xe", "member", "12345")) {
+    try (Connection conn = connectionPool.getConnection();) {
 
         String sql = "SELECT name, spec, price, description FROM cart";
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -50,8 +50,7 @@ public class Frame_Cart extends javax.swing.JFrame {
 
 // 장바구니 데이터 저장 (JTable → DB)
 public void saveCartDataToDatabase() {
-    try (Connection conn = DriverManager.getConnection(
-         "jdbc:oracle:thin:@localhost:1521:xe", "member", "12345")) {
+    try (Connection conn = connectionPool.getConnection();) {
 
         String deleteSql = "DELETE FROM cart";
         PreparedStatement deleteStmt = conn.prepareStatement(deleteSql);

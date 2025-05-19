@@ -11,12 +11,6 @@ import java.util.List;
 public class UserDAO {
 
     // 1. DB 연결용 메서드(매번 DB 연결하는 코드 중복 방지)
-    private static Connection getConnection() throws Exception {
-        Class.forName("oracle.jdbc.driver.OracleDriver"); //오라클 드라이버 로딩
-        return DriverManager.getConnection(
-            "jdbc:oracle:thin:@localhost:1521:xe", "member", "12345"
-        );
-    }
 
     // 로그인 파트: 이재준
     public boolean login(String userid, String inputPw) {
@@ -25,7 +19,7 @@ public class UserDAO {
 
         try {
             String sql = "SELECT member_id ,password FROM usertbl WHERE member_id=?";
-            PreparedStatement pstmt = getConnection().prepareStatement(sql);
+            PreparedStatement pstmt = connectionPool.getConnection().prepareStatement(sql);
             pstmt.setString(1, userid);
             ResultSet rs = pstmt.executeQuery();
 
@@ -92,7 +86,7 @@ public class UserDAO {
 
         try (
         	//3. SQL 실행 & 결과 처리
-            Connection conn = getConnection(); //오라클 DB와 연결된 Connection 객체 생성
+            Connection conn = connectionPool.getConnection();
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM usertbl"); //SQL 실행을 준비하는 PreparedStatement 생성 ("GPU 테이블 전체 조회" 쿼리 준비)
             ResultSet rs = pstmt.executeQuery(); //결과는 rs (ResultSet)에 담김
         ) {
@@ -138,7 +132,7 @@ public class UserDAO {
 
         try {
             String sql = "SELECT member_id FROM usertbl WHERE member_id=?";
-            PreparedStatement pstmt = getConnection().prepareStatement(sql);
+            PreparedStatement pstmt = connectionPool.getConnection().prepareStatement(sql);
             pstmt.setString(1, userid);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {

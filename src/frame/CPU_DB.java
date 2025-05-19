@@ -1,7 +1,8 @@
 package frame;
 
+import static database.SimpleConnectionPool.connectionPool;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -28,8 +29,8 @@ public class CPU_DB {
     public static ArrayList<CPU_DB> getCpulist(){
         ArrayList<CPU_DB> list = new ArrayList<>();
         try {
-        	Connection conn = DriverManager.getConnection(
-        	"jdbc:oracle:thin:@localhost:1521:xe", "admin", "12345");
+
+            Connection conn = connectionPool.getConnection();
             
             String sql = "SELECT * FROM product";
             PreparedStatement pstmt = conn.prepareStatement(sql);
