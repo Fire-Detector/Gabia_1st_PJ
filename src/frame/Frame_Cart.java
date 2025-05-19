@@ -8,12 +8,16 @@ import static database.SimpleConnectionPool.connectionPool;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.security.interfaces.RSAKey;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
+
+import database.Disk_02;
 
 /**
  *
@@ -181,9 +185,13 @@ public void saveCartDataToDatabase() {
 
         pack();
     }// </editor-fold>                        
-
+//구매하기
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        ArrayList<Disk_02> diskList = Disk_02.getDiskList();
+        Disk_02 disk = diskList.get(0);
+        Object[][] data = new Object[diskList.size()][5];
+
     }                                        
 
     /**

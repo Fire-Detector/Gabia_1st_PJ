@@ -162,7 +162,7 @@ public class Frame_DiskNext extends javax.swing.JFrame {
                ArrayList<Disk_02> diskList = Disk_02.getDiskList();
 
            if (diskList.size() > 3) {
-        	   Disk_02 disk = diskList.get(3);; // 세번째 CPU만 선택
+        	   Disk_02 disk = diskList.get(3); // 세번째 CPU만 선택
 
                String cpuid = disk.getDiskid();
                String cpudata = disk.getDiskdata();

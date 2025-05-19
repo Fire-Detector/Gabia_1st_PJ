@@ -7,6 +7,7 @@ import static database.SimpleConnectionPool.connectionPool;
 
 import database.UserDAO;
 import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,8 @@ import javax.swing.JOptionPane;
  * @author 솔데스크
  */
 public class Frame_Login extends javax.swing.JFrame {
+
+    static String userId = "";
 
     /**
      * Creates new form Frame_Login
@@ -39,6 +42,7 @@ public class Frame_Login extends javax.swing.JFrame {
         Btn_Login = new javax.swing.JButton();
         Btn_Register = new javax.swing.JButton();
 
+        System.out.println("55");
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("컴퓨터 구매 프로그램");
 
@@ -48,7 +52,12 @@ public class Frame_Login extends javax.swing.JFrame {
         Btn_Login.setText("로그인");
         Btn_Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_LoginActionPerformed(evt);
+                try {
+                    Btn_LoginActionPerformed(evt);
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -101,18 +110,26 @@ public class Frame_Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void Btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {
+    private void Btn_LoginActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
         // TODO add your handling code here:
         String userid = jTextField1.getText();
         String inputPw = new String(jPasswordField1.getPassword());
-        Connection conn = connectionPool.getConnection();
-        Frame_MyPage Page = new Frame_MyPage();
+        //Connection conn = connectionPool.getConnection();
+        Frame_MyPage Page = new Frame_MyPage(userid);
+        System.out.println("1번");
         UserDAO userDAO = new UserDAO();
+        System.out.println("2번");
+        connectionPool.getConnection();
+        System.out.println("3번");
+
 
         if (userDAO.login(userid, inputPw)) {
             JOptionPane.showMessageDialog(this, "로그인 성공");
             dispose();
             new Frame_Select().setVisible(true);
+            userId = userid;
+            // System.out.println("login: "+userid);
+            // new Frame_Select().setUserid(userid);
         } else {
             JOptionPane.showMessageDialog(this, "아이디 또는 비밀번호가 틀렸습니다.");
         }

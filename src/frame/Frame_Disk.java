@@ -163,7 +163,7 @@ public class Frame_Disk extends javax.swing.JFrame {
                ArrayList<Disk_02> diskList = Disk_02.getDiskList();
 
            if (diskList.size() > 0) {
-        	   Disk_02 disk = diskList.get(0);; // 세번째 CPU만 선택
+        	   Disk_02 disk = diskList.get(0); // 세번째 CPU만 선택
 
                String cpuid = disk.getDiskid();
                String cpudata = disk.getDiskdata();

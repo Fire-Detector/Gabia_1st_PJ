@@ -191,16 +191,12 @@ public class Frame_Register extends javax.swing.JFrame {
         // 1.5. 비밀번호 유효성 검사
         if (!userDAO.isValidPassword(pw)) {
             JOptionPane.showMessageDialog(this, "비밀번호는 8자 이상, 영문자/숫자/특수문자를 포함해야 합니다.");
+            System.out.println("1번째");
             return; // 실패 시 아래로 안 내려가고 함수 종료
         }
         // 1.5. 전화번호 유효성 검사
         if (phone.equals("")) {
             JOptionPane.showMessageDialog(this, "전번입력해주세요.");
-            return; // 실패 시 아래로 안 내려가고 함수 종료
-        }
-        // 1.5. 성별 유효성 검사
-        if (!userDAO.isValidPassword(gender)) {
-            JOptionPane.showMessageDialog(this, "비밀번호는 8자 이상, 영문자/숫자/특수문자를 포함해야 합니다.");
             return; // 실패 시 아래로 안 내려가고 함수 종료
         }
 
@@ -210,7 +206,6 @@ public class Frame_Register extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-
         // 2. DB 연결 및 INSERT 실행
         try {
             // 오라클 드라이버 로드
@@ -221,7 +216,7 @@ public class Frame_Register extends javax.swing.JFrame {
                     "jdbc:oracle:thin:@localhost:1521:xe", "member", "12345");
 
             // SQL 준비
-            String sql = "INSERT INTO MEMBERS (member_id, password, phone, gender) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO user_tbl (userid, password, phone, gender) VALUES (?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             // ? 에 값 넣기
@@ -232,7 +227,6 @@ public class Frame_Register extends javax.swing.JFrame {
 
             // SQL 실행
             try {
-
                 int result = pstmt.executeUpdate();
 
                 // 결과 확인

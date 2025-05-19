@@ -1,7 +1,6 @@
 package database;
 
 import static database.SimpleConnectionPool.connectionPool;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -35,4 +34,6 @@ public class ProductDAO {
         // 5. 리스트 반환
         return list;
     }// getAllGpus()
+
+
 }

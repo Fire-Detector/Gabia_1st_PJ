@@ -6,7 +6,9 @@ package frame;
 
 import database.UserDAO;
 import database.UserDTO;
-import java.util.ArrayList;
+import java.awt.Frame;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,13 +18,12 @@ public class Frame_MyPage extends javax.swing.JFrame {
     /**
      * Creates new form Frame_MyPage
      */
-    private String userId;
-    public void setting(String userId){
-        this.userId = userId;
-    }
-
-    public Frame_MyPage() {
-        initComponents();
+    private String userPhone;
+    private String UserName;
+    public Frame_MyPage(String userId) throws SQLException {
+        System.out.println("init Frame_MyPage, userId : "+userId+ " static userId : "+Frame_Login.userId);
+        initComponents(userId);
+        System.out.println("Err in Frame_MyPage");
     }
 
     /**
@@ -32,7 +33,7 @@ public class Frame_MyPage extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String userId) throws SQLException {
 
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -43,12 +44,16 @@ public class Frame_MyPage extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Btn_Selec = new javax.swing.JButton();
-        ArrayList<UserDTO> userList = UserDAO.getAllUser();
-        UserDTO disk = userList.get(0);
-        Object[][] data = new Object[userList.size()][5];
-        UserDTO ds = userList.get(1);
+        UserDTO user = UserDAO.getMyPage(userId);
+        System.out.println(user);
+        if(user == null) {
+            JOptionPane.showMessageDialog(this, "해당하는 사용자가 없습니다");
+            return;
+        }
 
-
+        jLabel5.setText(user.getUser_Id());
+        jLabel7.setText(user.getName());
+        jLabel8.setText(user.getUser_Phone());
 
 
         jLabel6.setText("jLabel5");
@@ -68,13 +73,13 @@ public class Frame_MyPage extends javax.swing.JFrame {
         jLabel4.setText("성별:");
 
         jLabel5.setFont(new java.awt.Font("맑은 고딕", 0, 24)); // NOI18N
-        jLabel5.setText(ds.getName());
+        //jLabel5.setText(ds.getUser_Id());
 
         jLabel7.setFont(new java.awt.Font("맑은 고딕", 0, 24)); // NOI18N
-        jLabel7.setText(ds.getUser_Phone());
+       // jLabel7.setText((String) data[0][1]);
 
         jLabel8.setFont(new java.awt.Font("맑은 고딕", 0, 24)); // NOI18N
-        jLabel8.setText(ds.getUser_Id());
+      //  jLabel8.setText((String) data[0][2]);
 
         Btn_Selec.setText("선택화면으로 돌아가기");
         Btn_Selec.addActionListener(new java.awt.event.ActionListener() {
@@ -144,37 +149,6 @@ public class Frame_MyPage extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame_MyPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame_MyPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame_MyPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frame_MyPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Frame_MyPage().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Selec;

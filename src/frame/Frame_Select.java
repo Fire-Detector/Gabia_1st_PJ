@@ -5,11 +5,19 @@
 */
 package frame;
 
+import java.sql.SQLException;
+
 public class Frame_Select extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
+    private String userid;
+    public void setUserid(String userid) {
+        System.out.println("In Select : "+userid);
+        this.userid = userid;
+    }
+
     public Frame_Select() {
         initComponents();
     }
@@ -83,7 +91,12 @@ public class Frame_Select extends javax.swing.JFrame {
         jButton7.setText("정보");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_MyPage(evt);
+                try {
+                    Btn_MyPage(evt);
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -184,9 +197,11 @@ public class Frame_Select extends javax.swing.JFrame {
     	main.setVisible(true);
     }//GEN-LAST:event_Btn_Disk
 
-    private void Btn_MyPage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_MyPage
+    private void Btn_MyPage(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_Btn_MyPage
         // TODO add your handling code here:
-        Frame_MyPage main = new Frame_MyPage();
+        this.userid = Frame_Login.userId;
+        System.out.println("In MyPageButton : "+userid);
+        Frame_MyPage main = new Frame_MyPage(userid);
     	main.setVisible(true);
     }//GEN-LAST:event_Btn_MyPage
 
