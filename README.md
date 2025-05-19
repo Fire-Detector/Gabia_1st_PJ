@@ -124,5 +124,24 @@
         <code>TODO</code>선생님 제공 GUI 확인 후 사용 GUI 선정
       </td>
     </tr>
+    <tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+    <tr>
+<td>
+2025-05-19 월
+</td>
+<td>
+프로젝트 리팩토링
+</td>
+<td>
+불필요한 중복 코드 제거
+</td>
+</tr>
   </tbody>
 </table>
