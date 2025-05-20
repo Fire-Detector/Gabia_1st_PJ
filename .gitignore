@@ -27,3 +27,4 @@ replay_pid*
 # Project Settings
 .idea/
 *.iml
+/bin/
