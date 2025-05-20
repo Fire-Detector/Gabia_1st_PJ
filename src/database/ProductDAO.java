@@ -20,6 +20,12 @@ public class ProductDAO {
     }
     
     public boolean addCart(int product_id) {
+        
+        CartDAO cartDAO = new CartDAO();
+        if (cartDAO.findCartIdByUserId()<0) {
+            cartDAO.createCart();
+        }
+        
         String sql =
                 "INSERT INTO cart_has_product (cart_id, product_id)\n" +
                 "VALUES (\n" +

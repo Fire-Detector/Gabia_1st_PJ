@@ -212,8 +212,9 @@ public class Frame_Select extends javax.swing.JFrame {
                 tableModel.addRow(rowData);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "장바구니가 비어있습니다.");
+//            JOptionPane.showMessageDialog(this, "장바구니가 비어있습니다.");
         }
+        
     }
 
     private void Btn_MainBoard(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_MainBoard

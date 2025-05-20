@@ -15,11 +15,23 @@ public class CartDAO {
         connection = connectionPool.getConnection();
     }
     
+    public boolean createCart() {
+        
+        String sql = "INSERT INTO cart (create_date, user_id) values(CURDATE(), ?)";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, Frame_Login.loginUser.getUser_id());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
     // 1. user_id로 cart_id 조회
-    public int findCartIdByUserId(String userId) {
+    public int findCartIdByUserId() {
         String sql = "SELECT cart_id FROM cart WHERE user_id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setString(1, userId);
+            pstmt.setString(1, Frame_Login.loginUser.getUser_id());
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt("cart_id");
