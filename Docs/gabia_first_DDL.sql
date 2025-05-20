@@ -5,37 +5,31 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema gabia_first
+-- Schema mydb
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema gabia_first
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `gabia_first` DEFAULT CHARACTER SET utf8mb3 ;
 -- -----------------------------------------------------
 -- Schema gabia_first
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `gabia_first` ;
 
 -- -----------------------------------------------------
 -- Schema gabia_first
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `gabia_first` DEFAULT CHARACTER SET utf8mb3 ;
 USE `gabia_first` ;
-USE `gabia_first` ;
 
 -- -----------------------------------------------------
--- Table `gabia_first`.`costumor`
+-- Table `gabia_first`.`user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `gabia_first`.`costumor` ;
+DROP TABLE IF EXISTS `gabia_first`.`user` ;
 
-CREATE TABLE IF NOT EXISTS `gabia_first`.`costumor` (
-  `costumor_id` INT NOT NULL COMMENT '동일 명의 다계정 ID Unique로 방지',
-  `costumor_password` VARCHAR(20) NOT NULL,
-  `costumor_phone` VARCHAR(14) NOT NULL COMMENT '신규개통 등 \\n동일 번호 고객 존재 가능\\n동일 명의 다계정 ID Unique로 방지',
-  `costumor_gender` VARCHAR(45) NULL,
-  `costumor_email` VARCHAR(30) NULL DEFAULT NULL,
-  PRIMARY KEY (`costumor_id`),
-  UNIQUE INDEX `costumor_id_UNIQUE` (`costumor_id` ASC) VISIBLE)
+CREATE TABLE IF NOT EXISTS `gabia_first`.`user` (
+  `user_id` VARCHAR(30) NOT NULL COMMENT '동일 명의 다계정 ID Unique로 방지',
+  `user_password` VARCHAR(40) NOT NULL,
+  `user_phone` VARCHAR(14) NOT NULL COMMENT '신규개통 등 \\\\n동일 번호 고객 존재 가능\\\\n동일 명의 다계정 ID Unique로 방지',
+  `user_gender` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `costumor_id_UNIQUE` (`user_id` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -46,16 +40,18 @@ DEFAULT CHARACTER SET = utf8mb3;
 DROP TABLE IF EXISTS `gabia_first`.`cart` ;
 
 CREATE TABLE IF NOT EXISTS `gabia_first`.`cart` (
-  `cart_id` INT NOT NULL AUTO_INCREMENT COMMENT 'user_cart(또는 cart_items)에 \\n값이 있으면 카트가 있다고 \\n판별하는 방식은 \\n단기적, 단순한 상황에만 \\n적합합니다.',
+  `cart_id` INT NOT NULL AUTO_INCREMENT COMMENT 'user_cart(또는 cart_items)에 \\\\n값이 있으면 카트가 있다고 \\\\n판별하는 방식은 \\\\n단기적, 단순한 상황에만 \\\\n적합합니다.',
   `create_date` VARCHAR(45) NOT NULL,
-  `costumor_costumor_id` INT NOT NULL,
+  `user_id` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`cart_id`, `create_date`),
   UNIQUE INDEX `cart_id_UNIQUE` (`cart_id` ASC) VISIBLE,
   UNIQUE INDEX `cartcol_UNIQUE` (`create_date` ASC) VISIBLE,
-  INDEX `fk_cart_costumor1_idx` (`costumor_costumor_id` ASC) VISIBLE,
-  CONSTRAINT `fk_cart_costumor1`
-    FOREIGN KEY (`costumor_costumor_id`)
-    REFERENCES `gabia_first`.`costumor` (`costumor_id`))
+  INDEX `fk_cart_user1_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_cart_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `gabia_first`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -93,6 +89,7 @@ CREATE TABLE IF NOT EXISTS `gabia_first`.`product` (
     FOREIGN KEY (`category_id`)
     REFERENCES `gabia_first`.`category` (`category_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 55
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -102,17 +99,16 @@ DEFAULT CHARACTER SET = utf8mb3;
 DROP TABLE IF EXISTS `gabia_first`.`cart_has_product` ;
 
 CREATE TABLE IF NOT EXISTS `gabia_first`.`cart_has_product` (
-  `cart_cart_id` INT NOT NULL,
-  `cart_create_date` VARCHAR(45) NOT NULL,
-  `product_product_id` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`cart_cart_id`, `cart_create_date`, `product_product_id`),
-  INDEX `fk_cart_has_product_product1_idx` (`product_product_id` ASC) VISIBLE,
-  INDEX `fk_cart_has_product_cart1_idx` (`cart_cart_id` ASC, `cart_create_date` ASC) VISIBLE,
+  `cart_id` INT NOT NULL,
+  `product_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`cart_id`, `product_id`),
+  INDEX `fk_cart_has_product_product1_idx` (`product_id` ASC) VISIBLE,
+  INDEX `fk_cart_has_product_cart1_idx` (`cart_id` ASC) VISIBLE,
   CONSTRAINT `fk_cart_has_product_cart1`
-    FOREIGN KEY (`cart_cart_id` , `cart_create_date`)
-    REFERENCES `gabia_first`.`cart` (`cart_id` , `create_date`),
+    FOREIGN KEY (`cart_id`)
+    REFERENCES `gabia_first`.`cart` (`cart_id`),
   CONSTRAINT `fk_cart_has_product_product1`
-    FOREIGN KEY (`product_product_id`)
+    FOREIGN KEY (`product_id`)
     REFERENCES `gabia_first`.`product` (`product_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
