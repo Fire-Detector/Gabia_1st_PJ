@@ -147,7 +147,7 @@ public class UserDAO {
     
     // 아이디 중복 확인
     public boolean isUserIdExist(String userId) {
-        final String SQL = "SELECT usertbl FROM usertbl WHERE member_id = ?";
+        final String SQL = "SELECT * FROM user WHERE user_id = ?";
         
         try (Connection conn = connectionPool.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
@@ -179,7 +179,7 @@ public class UserDAO {
         boolean result = false;
         
         try {
-            String sql = "SELECT userid FROM usertbl WHERE userid=?";
+            String sql = "SELECT user_id FROM user WHERE user_id=?";
             PreparedStatement pstmt = connectionPool.getConnection().prepareStatement(sql);
             pstmt.setString(1, userid);
             ResultSet rs = pstmt.executeQuery();

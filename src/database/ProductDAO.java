@@ -1,5 +1,7 @@
 package database;
 
+import frame.Frame_Login;
+
 import static database.SimpleConnectionPool.connectionPool;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +16,27 @@ public class ProductDAO {
     private Connection connection;
     
     public ProductDAO() {
+        connection = connectionPool.getConnection();
+    }
+    
+    public boolean addCart(int product_id) {
+        String sql =
+                "INSERT INTO cart_has_product (cart_id, product_id)\n" +
+                "VALUES (\n" +
+                "    (SELECT cart_id FROM cart WHERE user_id = ?), \n" +
+                "    ?                                             \n" +
+                ");\n ";
+        PreparedStatement pstmt;
         try {
-            // 데이터베이스 연결 (예: MySQL)
-            connection = connectionPool.getConnection();
+            pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, Frame_Login.loginUser.getUser_id());
+            pstmt.setInt(2, product_id);
+            System.out.println("Run SQL: "+pstmt.toString());
+            return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
     // 1. Create (Insert)

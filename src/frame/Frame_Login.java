@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Frame_Login extends javax.swing.JFrame {
     
-    protected static UserDTO loginUser = null;
+    public static UserDTO loginUser = null;
 
     public Frame_Login() {
 
