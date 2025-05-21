@@ -239,23 +239,7 @@ public class UserDAO {
                 }
             }
         }
-        /*
-         * String deleteChildSql = "DELETE FROM cart_has_product WHERE cart_id = ?";
-         * try (PreparedStatement pstmt = conn.prepareStatement(deleteChildSql)) {
-         * pstmt.setString(1, cartId);
-         * pstmt.executeUpdate();
-         * }
-         */
-
-        // 위에서 찾은 user_id를 이용해 찾은 cart_id로 삭제
-        /*
-         * String deleteCartSQL = "DELETE FROM cart WHERE cart_id = ?";
-         * try (PreparedStatement pstmt = conn.prepareStatement(deleteCartSQL)) {
-         * pstmt.setString(1, cartId);
-         * pstmt.executeUpdate();
-         * }
-         */
-        // user 삭제
+        
     }
 
     // 아이디 중복확인 : 김정연

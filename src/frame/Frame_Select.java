@@ -20,6 +20,7 @@ public class Frame_Select extends javax.swing.JFrame {
     private javax.swing.JButton Btn_Power;
     private javax.swing.JButton Btn_Ram;
     private javax.swing.JButton Btn_Delete;
+    private javax.swing.JButton Btn_Buy;
     private javax.swing.JButton jButton7;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
@@ -44,6 +45,7 @@ public class Frame_Select extends javax.swing.JFrame {
         Btn_Power = new javax.swing.JButton();
         Btn_Disk = new javax.swing.JButton();
         Btn_Delete = new javax.swing.JButton();
+        Btn_Buy = new javax.swing.JButton(); 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
@@ -102,6 +104,10 @@ public class Frame_Select extends javax.swing.JFrame {
         Btn_Delete.setFont(new java.awt.Font("맑은 고딕", 0, 16));
         Btn_Delete.addActionListener(evt -> Btn_DeleteActionPerformed(evt));
 
+        //기능 추가 필요
+        Btn_Buy.setText("구매하기"); 
+        Btn_Buy.setFont(new java.awt.Font("맑은 고딕", 0, 16)); 
+        
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18));
         jLabel1.setText("");
 
@@ -144,7 +150,9 @@ public class Frame_Select extends javax.swing.JFrame {
                                                 .addContainerGap()
                                                 .addComponent(lblCart)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(Btn_Buy, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)) 
                                         .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
@@ -180,10 +188,10 @@ public class Frame_Select extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(lblCart)
-                                        .addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Btn_Buy, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)) 
                                 .addGap(10)
                                 .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                .addContainerGap()
                                 .addContainerGap(57, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -196,7 +204,7 @@ public class Frame_Select extends javax.swing.JFrame {
     }
 
     private void loadCartData() {
-        tableModel.setRowCount(0); // 🧹 기존 데이터 초기화
+        tableModel.setRowCount(0);
 
         CartDAO cartDAO = new CartDAO();
         List<ProductDTO> cartItems = cartDAO.getCartProducts();
@@ -232,7 +240,7 @@ public class Frame_Select extends javax.swing.JFrame {
         boolean success = cartDAO.deleteProductFromCart(productId);
 
         if (success) {
-            loadCartData(); // ✅ 삭제 후 데이터 새로고침
+            loadCartData();
             JOptionPane.showMessageDialog(this, "상품이 장바구니에서 삭제되었습니다.");
         } else {
             JOptionPane.showMessageDialog(this, "삭제에 실패했습니다.");

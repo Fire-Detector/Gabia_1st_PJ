@@ -150,7 +150,7 @@ public class Frame_Disk extends javax.swing.JFrame {
         Lbl_Exam2.setText("설명:");
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(430, 470));
+        setPreferredSize(new java.awt.Dimension(430, 480));
 
         Button_Next.setLabel("다음 페이지");
         Button_Next.setPreferredSize(new java.awt.Dimension(100, 30));
