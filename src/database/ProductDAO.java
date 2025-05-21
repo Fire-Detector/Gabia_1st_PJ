@@ -28,10 +28,10 @@ public class ProductDAO {
         
         String sql =
                 "INSERT INTO cart_has_product (cart_id, product_id)\n" +
-                "VALUES (\n" +
+                "VALUES (                                          \n" +
                 "    (SELECT cart_id FROM cart WHERE user_id = ?), \n" +
                 "    ?                                             \n" +
-                ");\n ";
+                ");";
         PreparedStatement pstmt;
         try {
             pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
