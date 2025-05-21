@@ -9,14 +9,11 @@
 */
 package frame;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.*;
-
 import database.ProductDAO;
 import database.ProductDTO;
+import java.awt.*;
+import java.util.List;
+import javax.swing.*;
 
 /**
  *
@@ -100,7 +97,7 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
         jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-        ImageIcon icon3 = new ImageIcon("src\\etc\\img\\Board\\GIGABYTE 정품 기가바이트 B650M K 제이씨현 M-ATX DDR5 AMD.JPG.JPG");
+        ImageIcon icon3 = new ImageIcon("src\\etc\\img\\Board\\GIGABYTE 정품 기가바이트 B650M K 제이씨현 M-ATX DDR5 AMD.JPG");
         Image Image3 = icon3.getImage();
         Image resizeImage3 = Image3.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon3 = new ImageIcon(resizeImage3);
