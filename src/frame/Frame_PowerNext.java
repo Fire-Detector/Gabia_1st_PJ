@@ -87,14 +87,15 @@ public class Frame_PowerNext extends javax.swing.JFrame {
         ImageIcon cpuImg1 = new ImageIcon("src\\etc\\img\\Power\\power4.png");
         Image scaled1 = cpuImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Power4.setIcon(new ImageIcon(scaled1));
-
+        Lbl_Power4.setText("ㅇㅇㅇ=");
         ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\Power\\power5.png");
         Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Power5.setIcon(new ImageIcon(scaled2));
-
+        Lbl_Power5.setText("ㅇㅇㅇ=");
         ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\Power\\power6.png");
         Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Power6.setIcon(new ImageIcon(scaled3));
+        Lbl_Power6.setText("ㅇㅇㅇ=");
 
         Lbl_Name4.setText("제조사:");
 

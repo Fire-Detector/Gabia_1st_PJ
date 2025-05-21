@@ -137,18 +137,24 @@ public class Frame_Select extends javax.swing.JFrame {
 			int totalPrice = cartDAO.getCartProducts().stream().mapToInt(ProductDTO::getPrice).sum();
 			System.out.println("총 가격: " + totalPrice);
 			System.out.println();
-			int answer = JOptionPane.showConfirmDialog(this, "총 가격은 :  " + totalPrice + "입니다.\n" + "구매하시겠습니까?",
-					"구매 확인", JOptionPane.YES_NO_OPTION);
-			if (answer == 0) {
-				try {
-					cartDAO.cartBuying(Frame_Login.loginUser.getUser_id());
-					loadCartData();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 
+			if (totalPrice == 0) {
+				JOptionPane.showMessageDialog(this, "장바구니에 물건이 없습니다.");
+			} else {
+				int answer = JOptionPane.showConfirmDialog(this, "총 가격은 :  " + totalPrice + "입니다.\n" + "구매하시겠습니까?",
+						"구매 확인", JOptionPane.YES_NO_OPTION);
+				if (answer == 0) {
+					try {
+						cartDAO.cartBuying(Frame_Login.loginUser.getUser_id());
+						loadCartData();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+
+			}
 		});
 
 		jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18));

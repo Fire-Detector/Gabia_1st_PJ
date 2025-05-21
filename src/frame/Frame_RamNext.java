@@ -107,7 +107,7 @@ public class Frame_RamNext extends javax.swing.JFrame {
 		ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\Ram\\micron.jpg");
 		Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Ram6.setIcon(new ImageIcon(scaled3));
-		Lbl_Ram6.setText("");
+		Lbl_Ram6.setText("ㅇㅇㅇ");
 
         Lbl_Name4.setText("제조사:");
 
