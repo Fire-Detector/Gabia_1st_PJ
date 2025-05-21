@@ -179,4 +179,9 @@ public class ProductDAO {
             e.printStackTrace();
         }
     }
+
+    public void ProductDAO() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'ProductDAO'");
+    }
 }

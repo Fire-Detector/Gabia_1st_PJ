@@ -1,5 +1,6 @@
 package frame;
 
+import database.ProductDAO;
 import database.UserDAO;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -54,7 +55,12 @@ public class Frame_MyPage extends javax.swing.JFrame {
         Btn_Delete.setText("회원 탈퇴");
         Btn_Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_DeleteActionPerformed(evt);
+                try {
+                    Btn_DeleteActionPerformed(evt);
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -121,11 +127,13 @@ public class Frame_MyPage extends javax.swing.JFrame {
         next.setVisible(true);
     }
 
-    private void Btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {
+    private void Btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {
         int confirm = JOptionPane.showConfirmDialog(this, "정말 회원 탈퇴 하시겠습니까?", "회원 탈퇴 확인", JOptionPane.YES_NO_OPTION);
+        ProductDAO connection = new ProductDAO();
         if (confirm == JOptionPane.YES_OPTION) {
             UserDAO dao = new UserDAO();
 			String userId = Frame_Login.loginUser.getUser_id();
+            System.out.println(userId);
 			boolean result = dao.deleteUser(userId);
 			if (result) {
 			    JOptionPane.showMessageDialog(this, "회원 탈퇴가 완료되었습니다.");
