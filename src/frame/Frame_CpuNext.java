@@ -390,18 +390,6 @@ public class Frame_CpuNext extends javax.swing.JFrame {
 		dispose();
 	}//GEN-LAST:event_Button_PreviousActionPerformed
 
-	private void Btn_Selec4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec4ActionPerformed
-		// TODO add your handling code here:
-	}//GEN-LAST:event_Btn_Selec4ActionPerformed
-
-	private void Btn_Selec5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec5ActionPerformed
-		// TODO add your handling code here:
-	}//GEN-LAST:event_Btn_Selec5ActionPerformed
-
-	private void Btn_Selec6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec6ActionPerformed
-		// TODO add your handling code here:
-	}//GEN-LAST:event_Btn_Selec6ActionPerformed
-
 	private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) {
 		dispose();
 	}

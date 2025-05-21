@@ -374,18 +374,6 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		dispose();
 	}
 
-	private void Btn_Selec1ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	private void Btn_Selec2ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	private void Btn_Selec3ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
 	private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) {
 		dispose();
 	}
