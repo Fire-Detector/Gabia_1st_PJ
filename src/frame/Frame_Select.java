@@ -1,8 +1,3 @@
-/*
-    Action Perform 까지 진행 완료하였으며 디자인 보정 필요
-    현재 카테고리는 6개로 확인
-    눌렀을 경우 이동하는 경우는 Action Perform에서 메소드 호출 방식
-*/
 package frame;
 
 import database.CartDAO;
@@ -15,16 +10,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class Frame_Select extends javax.swing.JFrame {
-    
+
     protected static List<ProductDTO> productList;
-    
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JButton Btn_Cpu;
     private javax.swing.JButton Btn_Disk;
     private javax.swing.JButton Btn_Gpu;
     private javax.swing.JButton Btn_MainBoard;
     private javax.swing.JButton Btn_Power;
     private javax.swing.JButton Btn_Ram;
+    private javax.swing.JButton Btn_Delete;
     private javax.swing.JButton jButton7;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
@@ -33,7 +28,7 @@ public class Frame_Select extends javax.swing.JFrame {
     private JLabel lblCart;
     private JTable productTable;
     private DefaultTableModel tableModel;
-    
+
     public Frame_Select() {
         initComponents();
         loadCartData();
@@ -48,69 +43,72 @@ public class Frame_Select extends javax.swing.JFrame {
         Btn_Gpu = new javax.swing.JButton();
         Btn_Power = new javax.swing.JButton();
         Btn_Disk = new javax.swing.JButton();
+        Btn_Delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jScrollPane1.setViewportView(jEditorPane1);
-        
+
         if (productList == null) {
             ProductDAO productDAO = new ProductDAO();
             productList = productDAO.selectAllProducts();
-            
         }
-        
+
         CartDAO cartDAO = new CartDAO();
         List<ProductDTO> cartItems = cartDAO.getCartProducts();
-        System.out.println(cartItems);
-        
+
         lblCart = new JLabel("장바구니");
         lblCart.setFont(new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 18));
-        
+
         String[] columns = {
                 "상품ID", "상품명", "제조사",
                 "스펙", "출시일", "가격", "카테고리"
         };
-        
+
         tableModel = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // 셀 편집 불가
+                return false;
             }
         };
-        
+
         productTable = new JTable(tableModel);
         productTable.setRowHeight(25);
         productTable.setAutoCreateRowSorter(true);
-        
+
         JScrollPane scrollPane = new JScrollPane(productTable);
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        
+
         Btn_Ram.setText("RAM");
         Btn_Ram.addActionListener(evt -> Btn_Ram(evt));
-        
+
         Btn_Cpu.setText("CPU");
         Btn_Cpu.addActionListener(evt -> Btn_Cpu(evt));
-        
+
         Btn_MainBoard.setText("M/B");
         Btn_MainBoard.addActionListener(evt -> Btn_MainBoard(evt));
-        
+
         Btn_Gpu.setText("GPU");
         Btn_Gpu.addActionListener(evt -> Btn_Gpu(evt));
-        
+
         Btn_Power.setText("Power");
         Btn_Power.addActionListener(evt -> Btn_Power(evt));
-        
+
         Btn_Disk.setText("Disk");
         Btn_Disk.addActionListener(evt -> Btn_Disk(evt));
-        
-        jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel1.setText("아래 디자인좀....");
-        
-        jLabel3.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel3.setText("하기 내용 선택");
-        
-        jButton7.setFont(new java.awt.Font("맑은 고딕", 0, 18)); // NOI18N
+
+        Btn_Delete.setText("상품 삭제");
+        Btn_Delete.setFont(new java.awt.Font("맑은 고딕", 0, 16));
+        Btn_Delete.addActionListener(evt -> Btn_DeleteActionPerformed(evt));
+
+        jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18));
+        jLabel1.setText("");
+
+        jLabel3.setFont(new java.awt.Font("맑은 고딕", 1, 18));
+        jLabel3.setText("");
+
+        jButton7.setFont(new java.awt.Font("맑은 고딕", 0, 18));
         jButton7.setText("정보");
         jButton7.addActionListener(evt -> {
             try {
@@ -119,7 +117,7 @@ public class Frame_Select extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         });
-        
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,7 +143,8 @@ public class Frame_Select extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addComponent(lblCart)
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
@@ -178,9 +177,11 @@ public class Frame_Select extends javax.swing.JFrame {
                                         .addComponent(Btn_Gpu, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(Btn_Power, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(Btn_Disk, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED) // 기존 컴포넌트와 라벨 사이 여백
-                                .addComponent(lblCart)
-                                .addGap(10) // 라벨과 테이블 사이 여백(마진)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblCart)
+                                        .addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10)
                                 .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                 .addContainerGap()
                                 .addContainerGap(57, Short.MAX_VALUE))
@@ -190,14 +191,16 @@ public class Frame_Select extends javax.swing.JFrame {
                                         .addComponent(jLabel3)
                                         .addContainerGap(251, Short.MAX_VALUE)))
         );
-        
+
         pack();
     }
-    
+
     private void loadCartData() {
+        tableModel.setRowCount(0); // 🧹 기존 데이터 초기화
+
         CartDAO cartDAO = new CartDAO();
         List<ProductDTO> cartItems = cartDAO.getCartProducts();
-        
+
         if (cartItems != null && !cartItems.isEmpty()) {
             for (ProductDTO product : cartItems) {
                 Object[] rowData = {
@@ -206,58 +209,76 @@ public class Frame_Select extends javax.swing.JFrame {
                         product.getManufacturer(),
                         product.getSpec(),
                         product.getReleaseDate(),
-                        String.format("%,d 원", product.getPrice()), // 가격 포매팅
+                        String.format("%,d 원", product.getPrice()),
                         product.getCategoryId()
                 };
                 tableModel.addRow(rowData);
             }
-        } else {
-//            JOptionPane.showMessageDialog(this, "장바구니가 비어있습니다.");
         }
-        
     }
 
-    private void Btn_MainBoard(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_MainBoard
+    private void Btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {
+        int selectedRow = productTable.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "삭제할 상품을 선택하세요.");
+            return;
+        }
+
+        int modelRow = productTable.convertRowIndexToModel(selectedRow);
+        int productId = (int) tableModel.getValueAt(modelRow, 0);
+
+        CartDAO cartDAO = new CartDAO();
+        boolean success = cartDAO.deleteProductFromCart(productId);
+
+        if (success) {
+            loadCartData(); // ✅ 삭제 후 데이터 새로고침
+            JOptionPane.showMessageDialog(this, "상품이 장바구니에서 삭제되었습니다.");
+        } else {
+            JOptionPane.showMessageDialog(this, "삭제에 실패했습니다.");
+        }
+    }
+
+    private void Btn_MainBoard(java.awt.event.ActionEvent evt) {
         Frame_MainBoard main = new Frame_MainBoard();
+        this.setVisible(false);
         main.setVisible(true);
-    }//GEN-LAST:event_Btn_MainBoard
+    }
 
-    private void Btn_Cpu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Cpu
-        // TODO add your handling code here:
+    private void Btn_Cpu(java.awt.event.ActionEvent evt) {
         Frame_Cpu main = new Frame_Cpu();
-        dispose();
+        this.setVisible(false);
         main.setVisible(true);
-    }//GEN-LAST:event_Btn_Cpu
+    }
 
-    private void Btn_Ram(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Ram
-        // TODO add your handling code here:
+    private void Btn_Ram(java.awt.event.ActionEvent evt) {
         Frame_Ram main = new Frame_Ram();
+        this.setVisible(false);
         main.setVisible(true);
-    }//GEN-LAST:event_Btn_Ram
+    }
 
-    private void Btn_Gpu(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Gpu
-        // TODO add your handling code here:
+    private void Btn_Gpu(java.awt.event.ActionEvent evt) {
         Frame_Gpu main = new Frame_Gpu();
         main.setVisible(true);
-    }//GEN-LAST:event_Btn_Gpu
+        this.setVisible(false);
+    }
 
-    private void Btn_Power(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Power
-        // TODO add your handling code here:
+    private void Btn_Power(java.awt.event.ActionEvent evt) {
         Frame_Power main = new Frame_Power();
         main.setVisible(true);
-    }//GEN-LAST:event_Btn_Power
+        this.setVisible(false);
+    }
 
-    private void Btn_Disk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Disk
-        // TODO add your handling code here:
+    private void Btn_Disk(java.awt.event.ActionEvent evt) {
         Frame_Disk main = new Frame_Disk();
         main.setVisible(true);
-    }//GEN-LAST:event_Btn_Disk
+        this.setVisible(false);
+    }
 
-    private void Btn_MyPage(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_Btn_MyPage
-        // TODO add your handling code here:
-        System.out.println("MyPage btn clicked: "+ Frame_Login.loginUser);
+    private void Btn_MyPage(java.awt.event.ActionEvent evt) throws SQLException {
+        System.out.println("MyPage btn clicked: " + Frame_Login.loginUser);
         Frame_MyPage main = new Frame_MyPage();
+        this.setVisible(false);
         main.setVisible(true);
-    }//GEN-LAST:event_Btn_MyPage
-    // End of variables declaration//GEN-END:variables
+    }
 }

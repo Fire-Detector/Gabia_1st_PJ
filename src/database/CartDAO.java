@@ -82,6 +82,20 @@ public class CartDAO {
         product.setCategoryId(rs.getInt("category_id"));
         return product;
     }
+    public boolean deleteProductFromCart(int productId) {
+        int cartId = findCartIdByUserId();
+        String sql = "DELETE FROM cart_has_product WHERE cart_id = ? AND product_id = ?";
+        
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, cartId);
+            pstmt.setInt(2, productId);
+           int result = pstmt.executeUpdate();
+           return result > 0; 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return false;
+    }
     
     // 연결 종료
     public void close() {

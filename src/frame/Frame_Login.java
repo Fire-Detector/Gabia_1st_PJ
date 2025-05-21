@@ -1,10 +1,10 @@
 package frame;
-import static database.SimpleConnectionPool.connectionPool;
+
 
 import database.UserDAO;
 import database.UserDTO;
 
-import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 
 public class Frame_Login extends javax.swing.JFrame {

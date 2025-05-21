@@ -10,11 +10,16 @@
 package frame;
 
 import database.Disk_02;
+import database.ProductDAO;
+import database.ProductDTO;
+
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,8 +29,10 @@ public class Frame_DiskNext extends javax.swing.JFrame {
 
     /**
      * Creates new form Frame_Cpu
+     * @param diskList 
      */
-    public Frame_DiskNext() {
+    public Frame_DiskNext(List<ProductDTO> diskList) {
+    	this.diskList = diskList;
         initComponents();
     }
 
@@ -155,123 +162,43 @@ public class Frame_DiskNext extends javax.swing.JFrame {
         });
 
         Btn_Selec4.setText("추가");
-        Btn_Selec4.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-           public void actionPerformed(ActionEvent e) {
-               // CPU 데이터 리스트 가져오기
-               ArrayList<Disk_02> diskList = Disk_02.getDiskList();
-
-           if (diskList.size() > 3) {
-        	   Disk_02 disk = diskList.get(3); // 세번째 CPU만 선택
-
-               String cpuid = disk.getDiskid();
-               String cpudata = disk.getDiskdata();
-               String cpuprice = disk.getPrice();
-               String cpuprodctid = disk.getProdctid();
-    
-               // 세번쨰 CPU 장바구니로 이동
-             if (Frame_Cart.instance == null || !Frame_Cart.instance.isDisplayable()) {
-               Frame_Cart cart = new Frame_Cart();
-               cart.setVisible(true);
-   }
-
-               //CPU값 장바구니에 저장
-               Frame_Cart.instance.addRowToCart(cpuid, cpudata, cpuprice, cpuprodctid);
-               Frame_Cart.instance.saveCartDataToDatabase();
-           }
-           
-       }
-   });
-
-        Btn_Selec5.setText("추가");
-        Btn_Selec5.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-           public void actionPerformed(ActionEvent e) {
-               // CPU 데이터 리스트 가져오기
-               ArrayList<Disk_02> diskList = Disk_02.getDiskList();
-
-           if (diskList.size() > 4) {
-        	   Disk_02 disk = diskList.get(4);; // 세번째 CPU만 선택
-
-               String cpuid = disk.getDiskid();
-               String cpudata = disk.getDiskdata();
-               String cpuprice = disk.getPrice();
-               String cpuprodctid = disk.getProdctid();
-    
-               // 세번쨰 CPU 장바구니로 이동
-             if (Frame_Cart.instance == null || !Frame_Cart.instance.isDisplayable()) {
-               Frame_Cart cart = new Frame_Cart();
-               cart.setVisible(true);
-   }
-
-               //CPU값 장바구니에 저장
-               Frame_Cart.instance.addRowToCart(cpuid, cpudata, cpuprice, cpuprodctid);
-               Frame_Cart.instance.saveCartDataToDatabase();
-           }
-           
-       }
-   });
-
+        Btn_Selec5.setText("추가");        
         Btn_Selec6.setText("추가");
-        Btn_Selec6.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-           public void actionPerformed(ActionEvent e) {
-               // CPU 데이터 리스트 가져오기
-               ArrayList<Disk_02> diskList = Disk_02.getDiskList();
-
-           if (diskList.size() > 5) {
-        	   Disk_02 disk = diskList.get(5);; // 세번째 CPU만 선택
-
-               String cpuid = disk.getDiskid();
-               String cpudata = disk.getDiskdata();
-               String cpuprice = disk.getPrice();
-               String cpuprodctid = disk.getProdctid();
-    
-               // 세번쨰 CPU 장바구니로 이동
-             if (Frame_Cart.instance == null || !Frame_Cart.instance.isDisplayable()) {
-               Frame_Cart cart = new Frame_Cart();
-               cart.setVisible(true);
-   }
-
-               //CPU값 장바구니에 저장
-               Frame_Cart.instance.addRowToCart(cpuid, cpudata, cpuprice, cpuprodctid);
-               Frame_Cart.instance.saveCartDataToDatabase();
-           }
-           
-       }
-   });
-        ArrayList<Disk_02> diskList = Disk_02.getDiskList();
-        Disk_02 disk = diskList.get(0);
-        Object[][] data = new Object[diskList.size()][5];
-
-        for (int i = 0; i < diskList.size(); i++) {
-        	Disk_02 ds = diskList.get(i);
-            data[i][0] = ds.getProdctid();
-            data[i][1] = ds.getDiskid();
-            data[i][2] = ds.getDiskdata();
-            data[i][3] = ds.getPrice();
-        }
-        if (diskList.size() > 3) {
-        	Disk_02 disk3 = diskList.get(3);
-        jLabel4.setText(disk3.getDiskid());
-        jLabel3.setText(disk3.getPrice());
-        jLabel5.setText(disk3.getProdctid());
-        jLabel8.setText(disk3.getDiskdata());
-        }
-        if (diskList.size() > 4) {
-        	Disk_02 disk4 = diskList.get(4);
-        jLabel10.setText(disk4.getDiskid());
-        jLabel11.setText(disk4.getPrice());
-        jLabel12.setText(disk4.getProdctid());
-        jLabel13.setText(disk4.getDiskdata());
-        }
-        if (diskList.size() > 5) {
-        	Disk_02 disk5 = diskList.get(5);
-        jLabel14.setText(disk5.getDiskid());
-        jLabel16.setText(disk5.getPrice());
-        jLabel18.setText(disk5.getProdctid());
-        jLabel19.setText(disk5.getDiskdata());
-        }
+        
+        
+            
+        ProductDAO productDAO = new ProductDAO();
+        ProductDTO showProduct = diskList.remove(0);
+        jLabel4.setText(showProduct.getProductName());
+        jLabel3.setText(showProduct.getManufacturer());
+        jLabel5.setText(showProduct.getReleaseDate());
+        jLabel8.setText(String.valueOf(showProduct.getPrice()));
+        ProductDTO finalShowProduct4 = showProduct;
+        Btn_Selec4.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct4.getProductId()) ? "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+        
+        showProduct = diskList.remove(0);
+        jLabel10.setText(showProduct.getProductName());
+        jLabel11.setText(showProduct.getManufacturer());
+        jLabel12.setText(showProduct.getReleaseDate());
+        jLabel13.setText(String.valueOf(showProduct.getPrice()));
+        ProductDTO finalShowProduct5 = showProduct;
+        Btn_Selec5.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct5.getProductId()) ? "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+        
+        showProduct = diskList.remove(0);
+        jLabel14.setText(showProduct.getProductName());
+        jLabel16.setText(showProduct.getManufacturer());
+        jLabel18.setText(showProduct.getReleaseDate());
+        jLabel19.setText(String.valueOf(showProduct.getPrice()));
+        ProductDTO finalShowProduct6 = showProduct;
+        Btn_Selec6.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct6.getProductId()) ? "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+        
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -477,7 +404,8 @@ public class Frame_DiskNext extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frame_DiskNext().setVisible(true);
+                Frame_DiskNext frame_DiskNext = new Frame_DiskNext(null);
+				frame_DiskNext.setVisible(true);
             }
         });
     }
@@ -522,5 +450,7 @@ public class Frame_DiskNext extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private List<ProductDTO> diskList = null;
+    private javax.swing.JButton Btn_MoveSelect;
     // End of variables declaration//GEN-END:variables
 }

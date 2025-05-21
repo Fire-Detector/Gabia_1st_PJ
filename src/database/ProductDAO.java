@@ -124,7 +124,7 @@ public class ProductDAO {
         return false;
     }
     
-    // 5. Delete
+    // 5. 장바구니 정보 삭제 -> 이재준
     public boolean deleteProduct(int productId) {
         String sql = "DELETE FROM product WHERE product_id=?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {

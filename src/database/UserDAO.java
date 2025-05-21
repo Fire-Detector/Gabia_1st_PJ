@@ -9,7 +9,16 @@ import javax.swing.JOptionPane;
 
 //DAO (데이터 접근 객체) -> DB에 직접 접근하는 객체
 public class UserDAO {
-    
+	private Connection conn;
+	public UserDAO() {
+        try {
+            conn = connectionPool.getConnection();
+            System.out.println("UserDAO: DB 연결 성공!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+   
     // 1. DB 연결용 메서드(매번 DB 연결하는 코드 중복 방지)
     
     //마이페이지 창: 나세종, 호재영, 이재준
@@ -122,7 +131,7 @@ public class UserDAO {
         int result = 0;
         try {
             // SQL 준비
-            String sql = "INSERT INTO user_tbl (user_id, user_password, user_phone, user_gender) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO user (user_id, user_password, user_phone, user_gender) VALUES (?, ?, ?, ?)";
             Connection conn = connectionPool.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             
@@ -171,6 +180,26 @@ public class UserDAO {
         
         return hasLetter && hasDigit && hasSpecial;
         
+    }
+    public boolean deleteUser(String userId) {
+        try (Connection conn = connectionPool.getConnection()) {
+
+            // cart 먼저 삭제
+            String deleteCartSQL = "DELETE FROM cart WHERE user_id = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(deleteCartSQL)) {
+                pstmt.setString(1, userId);
+                pstmt.executeUpdate();
+            }
+            // user 삭제
+            String deleteUserSQL = "DELETE FROM user WHERE user_id = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(deleteUserSQL)) {
+                pstmt.setString(1, userId);
+                return pstmt.executeUpdate() > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
     
     //아이디 중복확인 : 김정연

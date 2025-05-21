@@ -62,6 +62,7 @@ public class Frame_Cpu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     
+    
     private List<ProductDTO> cpuList;
     public Frame_Cpu() {
         initComponents();
