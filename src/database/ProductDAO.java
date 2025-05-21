@@ -1,6 +1,7 @@
 package database;
 
 import frame.Frame_Login;
+import frame.Frame_Select;
 
 import static database.SimpleConnectionPool.connectionPool;
 import java.sql.PreparedStatement;
@@ -38,6 +39,7 @@ public class ProductDAO {
             pstmt.setString(1, Frame_Login.loginUser.getUser_id());
             pstmt.setInt(2, product_id);
             System.out.println("Run SQL: "+pstmt.toString());
+            Frame_Select.loadCartData();
             return pstmt.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();

@@ -43,8 +43,6 @@ public class Frame_Register extends javax.swing.JFrame {
         Register_Check.setText("중복확인");
         Register_Check.addActionListener(evt -> Register_CheckActionPerformed(evt));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

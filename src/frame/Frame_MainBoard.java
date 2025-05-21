@@ -9,10 +9,14 @@
 */
 package frame;
 
-import java.awt.Image;
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
+
+import database.ProductDAO;
+import database.ProductDTO;
 
 /**
  *
@@ -26,6 +30,8 @@ public class Frame_MainBoard extends javax.swing.JFrame {
     public Frame_MainBoard() {
         initComponents();
     }
+
+    List<ProductDTO> mainBoardList;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +95,6 @@ public class Frame_MainBoard extends javax.swing.JFrame {
 
         jButton2.setText("jButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 500));
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
@@ -156,59 +161,48 @@ public class Frame_MainBoard extends javax.swing.JFrame {
             }
         });
 
-        Btn_Selec1.setText("jButton1");
-        Btn_Selec1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec1ActionPerformed(evt);
-            }
-        });
-
-        Btn_Selec2.setText("jButton1");
-        Btn_Selec2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec2ActionPerformed(evt);
-            }
-        });
-
-        Btn_Selec3.setText("jButton1");
-        Btn_Selec3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec3ActionPerformed(evt);
-            }
-        });
-
-        
-        ArrayList<MainBoard_02> MainBoardList = MainBoard_02.getMainBoardList();
-        MainBoard_02 mainboard = MainBoardList.get(0);
-        Object[][] data = new Object[MainBoardList.size()][5];
-
-        for (int i = 0; i < MainBoardList.size(); i++) {
-        	MainBoard_02 mb = MainBoardList.get(i);
-            data[i][0] = mb.getobid();
-            data[i][1] = mb.getmbid();
-            data[i][2] = mb.getmbdata();
-            data[i][3] = mb.getPrice();
-        }
-        jLabel4.setText(mainboard.getmbid());
-        jLabel3.setText(mainboard.getPrice());
-        jLabel5.setText(mainboard.getobid());
-        jLabel8.setText(mainboard.getmbdata());
-        
-        if (MainBoardList.size() > 1) {
-        MainBoard_02 mb1 = MainBoardList.get(1);
-        jLabel10.setText(mb1.getmbid());
-        jLabel11.setText(mb1.getPrice());
-        jLabel12.setText(mb1.getobid());
-        jLabel13.setText(mb1.getmbdata());
+        mainBoardList = new ArrayList<>();
+        for (ProductDTO product : Frame_Select.productList) {
+            if (product.getCategoryId() == 5)
+                mainBoardList.add(product);
         }
 
-        if (MainBoardList.size() > 2) {
-        MainBoard_02 mb2 = MainBoardList.get(2);
-        jLabel14.setText(mb2.getmbid());
-        jLabel16.setText(mb2.getPrice());
-        jLabel18.setText(mb2.getobid());
-        jLabel19.setText(mb2.getmbdata());
-        }
+        ProductDAO productDAO = new ProductDAO();
+        ProductDTO showProduct = mainBoardList.remove(0);
+        jLabel3.setText(showProduct.getProductName());      // product_name
+        jLabel4.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel5.setText(showProduct.getReleaseDate());      // release_date
+        jLabel8.setText(String.valueOf(showProduct.getPrice()));    // price
+        ProductDTO finalShowProduct1 = showProduct;
+        Btn_Selec1.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct1.getProductId()) ?
+                "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+        Btn_Selec1.setText("추가");
+
+        showProduct = mainBoardList.remove(0);
+        jLabel10.setText(showProduct.getProductName());      // product_name
+        jLabel11.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel12.setText(showProduct.getReleaseDate());      // release_date
+        jLabel13.setText(String.valueOf(showProduct.getPrice()));    // price
+        ProductDTO finalShowProduct2 = showProduct;
+        Btn_Selec2.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct2.getProductId()) ?
+                "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+        Btn_Selec2.setText("추가");
+
+        showProduct = mainBoardList.remove(0);
+        jLabel14.setText(showProduct.getProductName());      // product_name
+        jLabel16.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel18.setText(showProduct.getReleaseDate());      // release_date
+        jLabel19.setText(String.valueOf(showProduct.getPrice()));    // price
+        ProductDTO finalShowProduct3 = showProduct;
+        Btn_Selec3.addActionListener((e) -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct3.getProductId()) ?
+                "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+        Btn_Selec3.setText("추가");
         
         
 
@@ -374,30 +368,16 @@ public class Frame_MainBoard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void Button_NextActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-        Frame_MainBoradNext next = new Frame_MainBoradNext();
-        dispose();
+    private void Button_NextActionPerformed(java.awt.event.ActionEvent evt) {
+        Frame_MainBoradNext next = new Frame_MainBoradNext(mainBoardList);
+        Point location = this.getLocation();
+        next.setLocation(location);
         next.setVisible(true);
-    }                                           
-
-    private void Btn_Selec1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
-    private void Btn_Selec2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
-    private void Btn_Selec3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
-    private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
-        Frame_Select next = new Frame_Select();
         dispose();
-        next.setVisible(true);
+    }
+
+    private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) {
+        dispose();
     }                                              
 
     /**

@@ -13,7 +13,7 @@ import database.Disk_02;
 import database.ProductDAO;
 import database.ProductDTO;
 
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +96,6 @@ public class Frame_Disk extends javax.swing.JFrame {
 
         jButton2.setText("jButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         jLabel1.setText("DISK");
@@ -148,8 +147,7 @@ public class Frame_Disk extends javax.swing.JFrame {
         Lbl_Exam3.setText("설명:");
 
         Lbl_Exam2.setText("설명:");
-        
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         setPreferredSize(new java.awt.Dimension(430, 470));
 
         Button_Next.setLabel("다음 페이지");
@@ -368,8 +366,10 @@ public class Frame_Disk extends javax.swing.JFrame {
     private void Button_NextActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
         Frame_DiskNext next = new Frame_DiskNext(diskList);
-        dispose();
+        Point location = this.getLocation();
+        next.setLocation(location);
         next.setVisible(true);
+        dispose();
     }                                           
 
     private void Btn_Selec1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -382,15 +382,9 @@ public class Frame_Disk extends javax.swing.JFrame {
 
     private void Btn_Selec3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }                                          
+    }
 
-    private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
-    	 System.out.println("이벤트 발생! 창 이동 시도");
-        Frame_Select next = new Frame_Select();
-        dispose();
-        next.setVisible(true);
-    }                                              
+    private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) { dispose(); }
 
     /**
      * @param args the command line arguments

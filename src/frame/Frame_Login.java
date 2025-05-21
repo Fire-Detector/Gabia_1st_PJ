@@ -1,6 +1,8 @@
 package frame;
 
 
+import java.awt.*;
+
 import database.UserDAO;
 import database.UserDTO;
 
@@ -88,8 +90,12 @@ public class Frame_Login extends javax.swing.JFrame {
         
         if ((loginUser = userDAO.login(user)) != null) {
             JOptionPane.showMessageDialog(this, "로그인 성공");
+
+            Point location = this.getLocation();
+            Frame_Select next = new Frame_Select();
+            next.setLocation(location);
+            next.setVisible(true);
             dispose();
-            new Frame_Select().setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "아이디 또는 비밀번호가 틀렸습니다.");
         }
@@ -97,9 +103,10 @@ public class Frame_Login extends javax.swing.JFrame {
 
     private void Btn_RegisterActionPerformed(java.awt.event.ActionEvent evt) {
 
-        Frame_Register main = new Frame_Register();
-        dispose();
-        main.setVisible(true);
+        Frame_Register next = new Frame_Register();
+        Point location = this.getLocation();
+        next.setLocation(location);
+        next.setVisible(true);
     }
 
     private javax.swing.JButton Btn_Login;

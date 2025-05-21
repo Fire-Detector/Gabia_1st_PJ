@@ -10,6 +10,8 @@
 
 package frame;
 
+import java.awt.*;
+
 /**
  *
  * @author 솔데스크
@@ -85,7 +87,6 @@ public class Frame_Power extends javax.swing.JFrame {
 
         jButton2.setText("jButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(450, 480));
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
@@ -338,8 +339,10 @@ public class Frame_Power extends javax.swing.JFrame {
     private void Button_NextActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
         Frame_PowerNext next = new Frame_PowerNext();
-        dispose();
+        Point location = this.getLocation();
+        next.setLocation(location);
         next.setVisible(true);
+        dispose();
     }                                           
 
     private void Btn_Selec3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -354,12 +357,7 @@ public class Frame_Power extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                          
 
-    private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
-        Frame_Select next = new Frame_Select();
-        dispose();
-        next.setVisible(true);
-    }                                              
+    private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) { dispose(); }
 
     /**
      * @param args the command line arguments

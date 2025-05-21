@@ -10,7 +10,8 @@
 package frame;
 
 import database.Disk_02;
-import java.awt.Image;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -89,7 +90,6 @@ public class Frame_GpuNext extends javax.swing.JFrame {
 
         jButton2.setText("jButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         jLabel1.setText("GPU");
@@ -142,8 +142,7 @@ public class Frame_GpuNext extends javax.swing.JFrame {
         Lbl_Exam6.setText("설명:");
 
         Lbl_Exam5.setText("설명:");
-        
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         setPreferredSize(new java.awt.Dimension(430, 470));
 
         Button_Previous.setText("이전 페이지");
@@ -427,9 +426,11 @@ public class Frame_GpuNext extends javax.swing.JFrame {
 
     private void Button_PreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_PreviousActionPerformed
         // TODO add your handling code here:
-        Frame_Gpu pre = new Frame_Gpu();
+        Frame_Gpu next = new Frame_Gpu();
+        Point location = this.getLocation();
+        next.setLocation(location);
+        next.setVisible(true);
         dispose();
-        pre.setVisible(true);
     }//GEN-LAST:event_Button_PreviousActionPerformed
 
     private void Btn_Selec4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec4ActionPerformed

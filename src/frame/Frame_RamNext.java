@@ -9,6 +9,7 @@
 */
 package frame;
 
+import java.awt.*;
 
 /**
  *
@@ -83,8 +84,6 @@ public class Frame_RamNext extends javax.swing.JFrame {
         jLabel20.setText("설명:");
 
         jButton2.setText("jButton1");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
         jLabel1.setText("GPU");
@@ -325,9 +324,11 @@ public class Frame_RamNext extends javax.swing.JFrame {
 
     private void Button_PreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_PreviousActionPerformed
         // TODO add your handling code here:
-        Frame_Ram pre = new Frame_Ram();
+        Frame_Ram next = new Frame_Ram();
+        Point location = this.getLocation();
+        next.setLocation(location);
+        next.setVisible(true);
         dispose();
-        pre.setVisible(true);
     }//GEN-LAST:event_Button_PreviousActionPerformed
 
     private void Btn_Selec6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec6ActionPerformed

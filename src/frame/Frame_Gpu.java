@@ -10,7 +10,8 @@
 package frame;
 
 import database.Disk_02;
-import java.awt.Image;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -108,7 +109,6 @@ public class Frame_Gpu extends javax.swing.JFrame {
 
         jLabel6.setText("jLabel3");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(430, 480));
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
@@ -440,8 +440,10 @@ public class Frame_Gpu extends javax.swing.JFrame {
 
     private void Button_NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_NextActionPerformed
         Frame_GpuNext next = new Frame_GpuNext();
-        dispose();
+        Point location = this.getLocation();
+        next.setLocation(location);
         next.setVisible(true);
+        dispose();
     }//GEN-LAST:event_Button_NextActionPerformed
 
     private void Btn_Selec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec1ActionPerformed
@@ -455,12 +457,7 @@ public class Frame_Gpu extends javax.swing.JFrame {
     private void Btn_Selec3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Btn_Selec3ActionPerformed
-    private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
-        Frame_Select next = new Frame_Select();
-        dispose();
-        next.setVisible(true);
-    }                                              
+    private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) { dispose(); }
 
 
     /**

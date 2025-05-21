@@ -9,10 +9,14 @@
 */
 package frame;
 
-import java.awt.Image;
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
+
+import database.ProductDAO;
+import database.ProductDTO;
 
 /**
  *
@@ -23,8 +27,8 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
     /**
      * Creates new form Frame_Cpu
      */
-    public Frame_MainBoradNext() {
-        initComponents();
+    public Frame_MainBoradNext(List<ProductDTO> mainBoardList) {
+        initComponents(mainBoardList);
     }
 
     /**
@@ -34,7 +38,7 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    private void initComponents() {
+    private void initComponents(List<ProductDTO> mainBoardList) {
 
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -88,7 +92,6 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
 
         jButton2.setText("jButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 500));
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
@@ -119,41 +122,42 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
         Lbl_MainBoard6.setText("");
 
 
-        ArrayList<MainBoard_02> MainBoardList = MainBoard_02.getMainBoardList();
-        MainBoard_02 mainboard = MainBoardList.get(0);
-        Object[][] data = new Object[MainBoardList.size()][5];
+        ProductDAO productDAO = new ProductDAO();
+        ProductDTO showProduct = mainBoardList.remove(0);
+        jLabel3.setText(showProduct.getProductName());      // product_name
+        jLabel4.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel5.setText(showProduct.getReleaseDate());      // release_date
+        jLabel8.setText(String.valueOf(showProduct.getPrice()));    // price
+        ProductDTO finalShowProduct1 = showProduct;
+        Btn_Selec4.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct1.getProductId()) ?
+                "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+        Btn_Selec4.setText("추가");
 
-        for (int i = 0; i < MainBoardList.size(); i++) {
-        	MainBoard_02 mb = MainBoardList.get(i);
-            data[i][0] = mb.getobid();
-            data[i][1] = mb.getmbid();
-            data[i][2] = mb.getmbdata();
-            data[i][3] = mb.getPrice();
-        }
-        
-        if (MainBoardList.size() > 3) {
-        MainBoard_02 mb3 = MainBoardList.get(3);
-        jLabel14.setText(mb3.getmbid());
-        jLabel16.setText(mb3.getPrice());
-        jLabel18.setText(mb3.getobid());
-        jLabel19.setText(mb3.getmbdata());
-        }
+        showProduct = mainBoardList.remove(0);
+        jLabel10.setText(showProduct.getProductName());      // product_name
+        jLabel11.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel12.setText(showProduct.getReleaseDate());      // release_date
+        jLabel13.setText(String.valueOf(showProduct.getPrice()));    // price
+        ProductDTO finalShowProduct2 = showProduct;
+        Btn_Selec5.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct2.getProductId()) ?
+                "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+        Btn_Selec5.setText("추가");
 
-        if (MainBoardList.size() > 4) {
-        MainBoard_02 mb4 = MainBoardList.get(4);
-        jLabel10.setText(mb4.getmbid());
-        jLabel11.setText(mb4.getPrice());
-        jLabel12.setText(mb4.getobid());
-        jLabel13.setText(mb4.getmbdata());
-        }
-
-        if (MainBoardList.size() > 5) {
-        MainBoard_02 mb5 = MainBoardList.get(5);
-        jLabel4.setText(mb5.getmbid());
-        jLabel3.setText(mb5.getPrice());
-        jLabel5.setText(mb5.getobid());
-        jLabel8.setText(mb5.getmbdata());
-        }
+        showProduct = mainBoardList.remove(0);
+        jLabel14.setText(showProduct.getProductName());      // product_name
+        jLabel16.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel18.setText(showProduct.getReleaseDate());      // release_date
+        jLabel19.setText(String.valueOf(showProduct.getPrice()));    // price
+        ProductDTO finalShowProduct3 = showProduct;
+        Btn_Selec6.addActionListener((e) -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct3.getProductId()) ?
+                "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+        Btn_Selec6.setText("추가");
 
 
         Lbl_Name4.setText("이름:");
@@ -358,12 +362,14 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void Button_PreviousActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    private void Button_PreviousActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         Frame_MainBoard next = new Frame_MainBoard();
-        dispose();
+        Point location = this.getLocation();
+        next.setLocation(location);
         next.setVisible(true);
-    }                                               
+        dispose();
+    }
 
     private void Btn_Selec6ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
@@ -376,48 +382,6 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
     private void Btn_Selec4ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
     }                                          
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame_MainBoradNext.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame_MainBoradNext.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame_MainBoradNext.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frame_MainBoradNext.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Frame_MainBoradNext().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton Btn_Selec4;
