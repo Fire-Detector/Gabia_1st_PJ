@@ -26,6 +26,7 @@ public class Frame_Select extends javax.swing.JFrame {
 	private javax.swing.JEditorPane jEditorPane1;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel3;
+	private javax.swing.JButton Btn_Buy;
 	private javax.swing.JScrollPane jScrollPane1;
 	private JLabel lblCart;
 	private JTable productTable;
@@ -45,13 +46,13 @@ public class Frame_Select extends javax.swing.JFrame {
 			if (cartItems != null && !cartItems.isEmpty()) {
 				for (ProductDTO product : cartItems) {
 					Object[] rowData = {
-						product.getProductId(),
-						product.getProductName(),
-						product.getManufacturer(),
-						product.getSpec(),
-						product.getReleaseDate(),
-						String.format("%,d 원", product.getPrice()),
-						product.getCategoryId()
+							product.getProductId(),
+							product.getProductName(),
+							product.getManufacturer(),
+							product.getSpec(),
+							product.getReleaseDate(),
+							String.format("%,d 원", product.getPrice()),
+							product.getCategoryId()
 					};
 					tableModel.addRow(rowData);
 				}
@@ -85,12 +86,18 @@ public class Frame_Select extends javax.swing.JFrame {
 		CartDAO cartDAO = new CartDAO();
 		List<ProductDTO> cartItems = cartDAO.getCartProducts();
 
+		int totalPrice = cartItems.stream().mapToInt(ProductDTO::getPrice).sum();
+		System.out.println("총 가격: " + totalPrice);
+
+		//Btn_Buy.setText("구매하기"); 
+        //Btn_Buy.setFont(new java.awt.Font("맑은 고딕", 0, 16)); 
+
 		lblCart = new JLabel("장바구니");
 		lblCart.setFont(new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 18));
 
 		String[] columns = {
-			"상품ID", "상품명", "제조사",
-			"스펙", "출시일", "가격", "카테고리"
+				"상품ID", "상품명", "제조사",
+				"스펙", "출시일", "가격", "카테고리"
 		};
 
 		tableModel = new DefaultTableModel(columns, 0) {
@@ -149,92 +156,92 @@ public class Frame_Select extends javax.swing.JFrame {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
-			layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-					.addGap(31, 31, 31)
-					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup()
-							.addComponent(Btn_Gpu, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-							.addGap(18, 18, 18)
-							.addComponent(Btn_Power, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-							.addGap(18, 18, 18)
-							.addComponent(Btn_Disk, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-								javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGroup(layout.createSequentialGroup()
-							.addComponent(Btn_Cpu, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-							.addGap(18, 18, 18)
-							.addComponent(Btn_MainBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-							.addGap(18, 18, 18)
-							.addComponent(Btn_Ram, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-								javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGroup(layout.createSequentialGroup()
-							.addGap(8, 8, 8)
-							.addComponent(jLabel1))
-						.addGroup(layout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblCart)
-							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130,
-								javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGroup(layout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
-							.addContainerGap()))
-					.addContainerGap(33, Short.MAX_VALUE))
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-					.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 87,
-						javax.swing.GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-					.addGroup(layout.createSequentialGroup()
-						.addGap(41, 41, 41)
-						.addComponent(jLabel3)
-						.addContainerGap(239, Short.MAX_VALUE)))
-		);
+								.addGap(31, 31, 31)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addGroup(layout.createSequentialGroup()
+												.addComponent(Btn_Gpu, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(18, 18, 18)
+												.addComponent(Btn_Power, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(18, 18, 18)
+												.addComponent(Btn_Disk, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+														javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addGroup(layout.createSequentialGroup()
+												.addComponent(Btn_Cpu, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(18, 18, 18)
+												.addComponent(Btn_MainBoard, javax.swing.GroupLayout.PREFERRED_SIZE,
+														100,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addGap(18, 18, 18)
+												.addComponent(Btn_Ram, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+														javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addGroup(layout.createSequentialGroup()
+												.addGap(8, 8, 8)
+												.addComponent(jLabel1))
+										.addGroup(layout.createSequentialGroup()
+												.addContainerGap()
+												.addComponent(lblCart)
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+												.addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130,
+														javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addGroup(layout.createSequentialGroup()
+												.addContainerGap()
+												.addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776,
+														Short.MAX_VALUE)
+												.addContainerGap()))
+								.addContainerGap(33, Short.MAX_VALUE))
+						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 87,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addContainerGap())
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(layout.createSequentialGroup()
+										.addGap(41, 41, 41)
+										.addComponent(jLabel3)
+										.addContainerGap(239, Short.MAX_VALUE))));
 		layout.setVerticalGroup(
-			layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
-						javax.swing.GroupLayout.PREFERRED_SIZE)
-					.addGap(21, 21, 21)
-					.addComponent(jLabel1)
-					.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-						.addComponent(Btn_Cpu, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-							javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(Btn_MainBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-							javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(Btn_Ram, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-							javax.swing.GroupLayout.PREFERRED_SIZE))
-					.addGap(18, 18, 18)
-					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(Btn_Gpu, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-							javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(Btn_Power, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-							javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(Btn_Disk, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-							javax.swing.GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-						.addComponent(lblCart)
-						.addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
-							javax.swing.GroupLayout.PREFERRED_SIZE))
-					.addGap(10)
-					.addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-					.addContainerGap()
-					.addContainerGap(57, Short.MAX_VALUE))
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-					.addGroup(layout.createSequentialGroup()
-						.addGap(43, 43, 43)
-						.addComponent(jLabel3)
-						.addContainerGap(251, Short.MAX_VALUE)))
-		);
+				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(21, 21, 21)
+								.addComponent(jLabel1)
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(Btn_Cpu, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(Btn_MainBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(Btn_Ram, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGap(18, 18, 18)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(Btn_Gpu, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(Btn_Power, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(Btn_Disk, javax.swing.GroupLayout.PREFERRED_SIZE, 70,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(lblCart)
+										.addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGap(10)
+								.addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+								.addContainerGap()
+								.addContainerGap(57, Short.MAX_VALUE))
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addGroup(layout.createSequentialGroup()
+										.addGap(43, 43, 43)
+										.addComponent(jLabel3)
+										.addContainerGap(251, Short.MAX_VALUE))));
 
 		pack();
 	}
@@ -248,7 +255,7 @@ public class Frame_Select extends javax.swing.JFrame {
 		}
 
 		int modelRow = productTable.convertRowIndexToModel(selectedRow);
-		int productId = (int)tableModel.getValueAt(modelRow, 0);
+		int productId = (int) tableModel.getValueAt(modelRow, 0);
 
 		CartDAO cartDAO = new CartDAO();
 		boolean success = cartDAO.deleteProductFromCart(productId);
@@ -263,51 +270,51 @@ public class Frame_Select extends javax.swing.JFrame {
 
 	private void Btn_MainBoard(java.awt.event.ActionEvent evt) {
 		Frame_MainBoard next = new Frame_MainBoard();
-        Point location = this.getLocation();
-        next.setLocation(location);
-        next.setVisible(true);
+		Point location = this.getLocation();
+		next.setLocation(location);
+		next.setVisible(true);
 	}
 
 	private void Btn_Cpu(java.awt.event.ActionEvent evt) {
 		Frame_Cpu next = new Frame_Cpu();
-        Point location = this.getLocation();
-        next.setLocation(location);
-        next.setVisible(true);
+		Point location = this.getLocation();
+		next.setLocation(location);
+		next.setVisible(true);
 	}
 
 	private void Btn_Ram(java.awt.event.ActionEvent evt) {
 		Frame_Ram next = new Frame_Ram();
-        Point location = this.getLocation();
-        next.setLocation(location);
-        next.setVisible(true);
+		Point location = this.getLocation();
+		next.setLocation(location);
+		next.setVisible(true);
 	}
 
 	private void Btn_Gpu(java.awt.event.ActionEvent evt) {
 		Frame_Gpu next = new Frame_Gpu();
-        Point location = this.getLocation();
-        next.setLocation(location);
-        next.setVisible(true);
+		Point location = this.getLocation();
+		next.setLocation(location);
+		next.setVisible(true);
 	}
 
 	private void Btn_Power(java.awt.event.ActionEvent evt) {
 		Frame_Power next = new Frame_Power();
-        Point location = this.getLocation();
-        next.setLocation(location);
-        next.setVisible(true);
+		Point location = this.getLocation();
+		next.setLocation(location);
+		next.setVisible(true);
 	}
 
 	private void Btn_Disk(java.awt.event.ActionEvent evt) {
 		Frame_Disk next = new Frame_Disk();
-        Point location = this.getLocation();
-        next.setLocation(location);
-        next.setVisible(true);
+		Point location = this.getLocation();
+		next.setLocation(location);
+		next.setVisible(true);
 	}
 
 	private void Btn_MyPage(java.awt.event.ActionEvent evt) throws SQLException {
 		System.out.println("MyPage btn clicked: " + Frame_Login.loginUser);
 		Frame_MyPage next = new Frame_MyPage();
-        Point location = this.getLocation();
-        next.setLocation(location);
+		Point location = this.getLocation();
+		next.setLocation(location);
 		next.setVisible(true);
 	}
 }
