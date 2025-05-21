@@ -11,8 +11,13 @@ package frame;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+import database.ProductDAO;
+import database.ProductDTO;
 
 /**
  *
@@ -23,7 +28,8 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
     /**
      * Creates new form Frame_Cpu
      */
-    public Frame_MainBoradNext() {
+    public Frame_MainBoradNext(List<ProductDTO> mainboardList) {
+    	this.mainboardList = mainboardList;
         initComponents();
     }
 
@@ -97,7 +103,7 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
         jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-        ImageIcon icon3 = new ImageIcon("src\\etc\\img\\Board\\GIGABYTE 정품 기가바이트 B650M K 제이씨현 M-ATX DDR5 AMD.JPG.JPG");
+        ImageIcon icon3 = new ImageIcon("src\\etc\\img\\Board\\GIGABYTE 정품 기가바이트 B650M K 제이씨현 M-ATX DDR5 AMD.JPG");
         Image Image3 = icon3.getImage();
         Image resizeImage3 = Image3.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon3 = new ImageIcon(resizeImage3);
@@ -118,42 +124,6 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
         Lbl_MainBoard6.setIcon(resizedIcon5);
         Lbl_MainBoard6.setText("");
 
-
-        ArrayList<MainBoard_02> MainBoardList = MainBoard_02.getMainBoardList();
-        MainBoard_02 mainboard = MainBoardList.get(0);
-        Object[][] data = new Object[MainBoardList.size()][5];
-
-        for (int i = 0; i < MainBoardList.size(); i++) {
-        	MainBoard_02 mb = MainBoardList.get(i);
-            data[i][0] = mb.getobid();
-            data[i][1] = mb.getmbid();
-            data[i][2] = mb.getmbdata();
-            data[i][3] = mb.getPrice();
-        }
-        
-        if (MainBoardList.size() > 3) {
-        MainBoard_02 mb3 = MainBoardList.get(3);
-        jLabel14.setText(mb3.getmbid());
-        jLabel16.setText(mb3.getPrice());
-        jLabel18.setText(mb3.getobid());
-        jLabel19.setText(mb3.getmbdata());
-        }
-
-        if (MainBoardList.size() > 4) {
-        MainBoard_02 mb4 = MainBoardList.get(4);
-        jLabel10.setText(mb4.getmbid());
-        jLabel11.setText(mb4.getPrice());
-        jLabel12.setText(mb4.getobid());
-        jLabel13.setText(mb4.getmbdata());
-        }
-
-        if (MainBoardList.size() > 5) {
-        MainBoard_02 mb5 = MainBoardList.get(5);
-        jLabel4.setText(mb5.getmbid());
-        jLabel3.setText(mb5.getPrice());
-        jLabel5.setText(mb5.getobid());
-        jLabel8.setText(mb5.getmbdata());
-        }
 
 
         Lbl_Name4.setText("이름:");
@@ -188,25 +158,41 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
             }
         });
 
-        Btn_Selec4.setText("jButton1");
-        Btn_Selec4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec4ActionPerformed(evt);
-            }
+        Btn_Selec4.setText("추가");
+        Btn_Selec5.setText("추가");        
+        Btn_Selec6.setText("추가");
+        
+        
+            
+        ProductDAO productDAO = new ProductDAO();
+        ProductDTO showProduct = mainboardList.remove(0);
+        jLabel4.setText(showProduct.getProductName());
+        jLabel3.setText(showProduct.getManufacturer());
+        jLabel5.setText(showProduct.getReleaseDate());
+        jLabel8.setText(String.valueOf(showProduct.getPrice()));
+        ProductDTO finalShowProduct4 = showProduct;
+        Btn_Selec4.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct4.getProductId()) ? "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
         });
-
-        Btn_Selec5.setText("jButton1");
-        Btn_Selec5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec5ActionPerformed(evt);
-            }
+        
+        showProduct = mainboardList.remove(0);
+        jLabel10.setText(showProduct.getProductName());
+        jLabel11.setText(showProduct.getManufacturer());
+        jLabel12.setText(showProduct.getReleaseDate());
+        jLabel13.setText(String.valueOf(showProduct.getPrice()));
+        ProductDTO finalShowProduct5 = showProduct;
+        Btn_Selec5.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct5.getProductId()) ? "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
         });
-
-        Btn_Selec6.setText("jButton1");
-        Btn_Selec6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec6ActionPerformed(evt);
-            }
+        
+        showProduct = mainboardList.remove(0);
+        jLabel14.setText(showProduct.getProductName());
+        jLabel16.setText(showProduct.getManufacturer());
+        jLabel18.setText(showProduct.getReleaseDate());
+        jLabel19.setText(String.valueOf(showProduct.getPrice()));
+        ProductDTO finalShowProduct6 = showProduct;
+        Btn_Selec6.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct6.getProductId()) ? "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
         });
 
 
@@ -412,11 +398,14 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+
+         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frame_MainBoradNext().setVisible(true);
+                Frame_MainBoradNext frame_MainBoradNext = new Frame_MainBoradNext(null);
+				frame_MainBoradNext.setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify                     
@@ -459,5 +448,9 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    // End of variables declaration                   
+    // End of variables declaration       
+    
+    private List<ProductDTO> mainboardList = null;
+    private javax.swing.JButton Btn_MoveSelect;
+               
 }

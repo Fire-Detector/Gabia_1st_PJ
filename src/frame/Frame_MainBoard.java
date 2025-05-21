@@ -11,8 +11,13 @@ package frame;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+import database.ProductDAO;
+import database.ProductDTO;
 
 /**
  *
@@ -148,6 +153,8 @@ public class Frame_MainBoard extends javax.swing.JFrame {
 
         Lbl_Exam2.setText("설명:");
 
+
+
         Button_Next.setLabel("다음 페이지");
         Button_Next.setPreferredSize(new java.awt.Dimension(100, 30));
         Button_Next.addActionListener(new java.awt.event.ActionListener() {
@@ -156,60 +163,46 @@ public class Frame_MainBoard extends javax.swing.JFrame {
             }
         });
 
-        Btn_Selec1.setText("jButton1");
-        Btn_Selec1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec1ActionPerformed(evt);
-            }
-        });
+        Btn_Selec1.setText("추가");
+        Btn_Selec2.setText("추가");     
+        Btn_Selec3.setText("추가");
 
-        Btn_Selec2.setText("jButton1");
-        Btn_Selec2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec2ActionPerformed(evt);
-            }
-        });
-
-        Btn_Selec3.setText("jButton1");
-        Btn_Selec3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec3ActionPerformed(evt);
-            }
-        });
-
-        
-        ArrayList<MainBoard_02> MainBoardList = MainBoard_02.getMainBoardList();
-        MainBoard_02 mainboard = MainBoardList.get(0);
-        Object[][] data = new Object[MainBoardList.size()][5];
-
-        for (int i = 0; i < MainBoardList.size(); i++) {
-        	MainBoard_02 mb = MainBoardList.get(i);
-            data[i][0] = mb.getobid();
-            data[i][1] = mb.getmbid();
-            data[i][2] = mb.getmbdata();
-            data[i][3] = mb.getPrice();
-        }
-        jLabel4.setText(mainboard.getmbid());
-        jLabel3.setText(mainboard.getPrice());
-        jLabel5.setText(mainboard.getobid());
-        jLabel8.setText(mainboard.getmbdata());
-        
-        if (MainBoardList.size() > 1) {
-        MainBoard_02 mb1 = MainBoardList.get(1);
-        jLabel10.setText(mb1.getmbid());
-        jLabel11.setText(mb1.getPrice());
-        jLabel12.setText(mb1.getobid());
-        jLabel13.setText(mb1.getmbdata());
+        MainBoardList = new ArrayList<>();
+        for (ProductDTO product : Frame_Select.productList) {
+            if (product.getCategoryId() == 5) MainBoardList.add(product);
         }
 
-        if (MainBoardList.size() > 2) {
-        MainBoard_02 mb2 = MainBoardList.get(2);
-        jLabel14.setText(mb2.getmbid());
-        jLabel16.setText(mb2.getPrice());
-        jLabel18.setText(mb2.getobid());
-        jLabel19.setText(mb2.getmbdata());
-        }
+       
+        ProductDAO productDAO = new ProductDAO();
+        ProductDTO showProduct = MainBoardList.remove(0);
+        jLabel4.setText(showProduct.getProductName());
+        jLabel3.setText(showProduct.getManufacturer());
+        jLabel5.setText(showProduct.getReleaseDate());
+        jLabel8.setText(String.valueOf(showProduct.getPrice()));
+        ProductDTO finalShowProduct1 = showProduct;
+        Btn_Selec1.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct1.getProductId()) ? "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
         
+        showProduct = MainBoardList.remove(0);
+        jLabel10.setText(showProduct.getProductName());
+        jLabel11.setText(showProduct.getManufacturer());
+        jLabel12.setText(showProduct.getReleaseDate());
+        jLabel13.setText(String.valueOf(showProduct.getPrice()));
+        ProductDTO finalShowProduct2 = showProduct;
+        Btn_Selec2.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct2.getProductId()) ? "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
+
+        showProduct = MainBoardList.remove(0);
+        jLabel14.setText(showProduct.getProductName());
+        jLabel16.setText(showProduct.getManufacturer());
+        jLabel18.setText(showProduct.getReleaseDate());
+        jLabel19.setText(String.valueOf(showProduct.getPrice()));
+        ProductDTO finalShowProduct3 = showProduct;
+        Btn_Selec3.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct3.getProductId()) ? "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+        });
         
 
        
@@ -376,7 +369,7 @@ public class Frame_MainBoard extends javax.swing.JFrame {
 
     private void Button_NextActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        Frame_MainBoradNext next = new Frame_MainBoradNext();
+        Frame_MainBoradNext next = new Frame_MainBoradNext(MainBoardList);
         dispose();
         next.setVisible(true);
     }                                           
@@ -398,6 +391,7 @@ public class Frame_MainBoard extends javax.swing.JFrame {
         Frame_Select next = new Frame_Select();
         dispose();
         next.setVisible(true);
+
     }                                              
 
     /**
@@ -483,5 +477,7 @@ public class Frame_MainBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    // End of variables declaration                   
+    // End of variables declaration     
+                
+    private List<ProductDTO> MainBoardList;
 }
