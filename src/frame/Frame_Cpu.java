@@ -12,12 +12,9 @@ package frame;
 
 import database.ProductDAO;
 import database.ProductDTO;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.*;
 
 /**
@@ -112,11 +109,11 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
 		// jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-		ImageIcon cpuImg1 = new ImageIcon("src\\etc\\img\\CPU\\cpu1.png");
+		ImageIcon cpuImg1 = new ImageIcon("src\\etc\\img\\CPU\\cpu5.jpg");
 		Image scaled1 = cpuImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Cpu1.setIcon(new ImageIcon(scaled1));
 		Lbl_Cpu1.setText("");
-		ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\CPU\\cpu2.png");
+		ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\CPU\\cpu4.jpg");
 		Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Cpu2.setIcon(new ImageIcon(scaled2));
 		Lbl_Cpu2.setText("");
@@ -169,8 +166,8 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		Btn_Selec1.setText("추가");
 
 		showProduct = cpuList.remove(0);
-		jLabel10.setText(showProduct.getProductName());      // product_name
-		jLabel11.setText(showProduct.getManufacturer());     // manufacturer
+		jLabel10.setText(showProduct.getManufacturer());      // product_name
+		jLabel11.setText(showProduct.getProductName());     // manufacturer
 		jLabel12.setText(showProduct.getReleaseDate());      // release_date
 		jLabel13.setText(String.valueOf(showProduct.getPrice()));    // price
 		ProductDTO finalShowProduct2 = showProduct;
@@ -181,8 +178,8 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		Btn_Selec2.setText("추가");
 
 		showProduct = cpuList.remove(0);
-		jLabel14.setText(showProduct.getProductName());      // product_name
-		jLabel16.setText(showProduct.getManufacturer());     // manufacturer
+		jLabel14.setText(showProduct.getManufacturer());      // product_name
+		jLabel16.setText(showProduct.getProductName());     // manufacturer
 		jLabel18.setText(showProduct.getReleaseDate());      // release_date
 		jLabel19.setText(String.valueOf(showProduct.getPrice()));    // price
 		ProductDTO finalShowProduct3 = showProduct;

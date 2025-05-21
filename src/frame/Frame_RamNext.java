@@ -9,7 +9,11 @@
 */
 package frame;
 
+import database.ProductDAO;
+import database.ProductDTO;
 import java.awt.*;
+import java.util.List;
+import javax.swing.*;
 
 /**
  *
@@ -20,7 +24,8 @@ public class Frame_RamNext extends javax.swing.JFrame {
     /**
      * Creates new form Frame_Cpu
      */
-    public Frame_RamNext() {
+    public Frame_RamNext(List ramList) {
+        this.ramList = ramList;
         initComponents();
     }
 
@@ -73,11 +78,36 @@ public class Frame_RamNext extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
 
+        jLabel7.setText("이름:");
+
+        jLabel9.setText("이름:");
+
+        jLabel15.setText("정보:");
+
+        jLabel17.setText("정보:");
+
+        jLabel20.setText("설명:");
+
+        jButton2.setText("jButton1");
+
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel1.setText("RAM");
+        jLabel1.setText("GPU");
 
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
-        // jLabel2.setText("아이템 추가는 소스에서 추가 가능");
+        jLabel2.setText("아이템 추가는 소스에서 추가 가능");
+
+        ImageIcon ramImg1 = new ImageIcon("src\\etc\\img\\Ram\\kingston.jpg");
+		Image scaled1 = ramImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		Lbl_Ram4.setIcon(new ImageIcon(scaled1));
+		Lbl_Ram4.setText("");
+		ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\Ram\\teamgroup.jpg");
+		Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		Lbl_Ram5.setIcon(new ImageIcon(scaled2));
+		Lbl_Ram5.setText("");
+		ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\Ram\\micron.jpg");
+		Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		Lbl_Ram6.setIcon(new ImageIcon(scaled3));
+		Lbl_Ram6.setText("");
 
         Lbl_Name4.setText("제조사:");
 
@@ -111,51 +141,44 @@ public class Frame_RamNext extends javax.swing.JFrame {
             }
         });
 
-        Btn_Selec4.setText("jButton1");
-        Btn_Selec4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec4ActionPerformed(evt);
-            }
-        });
+        ProductDAO productDAO = new ProductDAO();
+		ProductDTO showProduct = ramList.remove(0);
+		jLabel3.setText(showProduct.getProductName());      // product_name
+		jLabel4.setText(showProduct.getManufacturer());     // manufacturer
+		jLabel5.setText(showProduct.getReleaseDate());      // release_date
+		jLabel8.setText(String.valueOf(showProduct.getPrice()));    // price
+		Btn_Selec4.setText("추가");
+		ProductDTO finalShowProduct4 = showProduct;
+		Btn_Selec4.addActionListener((e) -> {
+			JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct4.getProductId()) ?
+				"카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+		});
 
-        Btn_Selec5.setText("jButton1");
-        Btn_Selec5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec5ActionPerformed(evt);
-            }
-        });
+		showProduct = ramList.remove(0);
+		jLabel10.setText(showProduct.getManufacturer());      // product_name
+		jLabel11.setText(showProduct.getProductName());     // manufacturer
+		jLabel12.setText(showProduct.getReleaseDate());      // release_date
+		jLabel13.setText(String.valueOf(showProduct.getPrice()));    // price
+		Btn_Selec5.setText("추가");
+		ProductDTO finalShowProduct5 = showProduct;
+		Btn_Selec5.addActionListener((e) -> {
+			JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct5.getProductId()) ?
+				"카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+		});
 
-        Btn_Selec6.setText("jButton1");
-        Btn_Selec6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec6ActionPerformed(evt);
-            }
-        });
+		showProduct = ramList.remove(0);
+		jLabel14.setText(showProduct.getManufacturer());      // product_name
+		jLabel16.setText(showProduct.getProductName());     // manufacturer
+		jLabel18.setText(showProduct.getReleaseDate());      // release_date
+		jLabel19.setText(String.valueOf(showProduct.getPrice()));    // price
+		Btn_Selec6.setText("추가");
+		ProductDTO finalShowProduct6 = showProduct;
+		Btn_Selec6.addActionListener((e) -> {
+			JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct6.getProductId()) ?
+				"카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+		});
 
-        jLabel4.setText("이름1");
 
-        jLabel3.setText("가격1");
-
-        jLabel5.setText("정보1");
-
-        jLabel8.setText("설명1");
-
-        jLabel10.setText("이름2");
-
-        jLabel11.setText("가격2");
-
-        jLabel12.setText("정보2");
-
-        jLabel13.setText("설명2");
-
-        jLabel14.setText("이름3");
-
-        jLabel16.setText("가격3");
-
-        jLabel18.setText("정보3");
-
-        jLabel19.setText("설명3");
-        setPreferredSize(new java.awt.Dimension(600, 550));
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -360,11 +383,7 @@ public class Frame_RamNext extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Frame_RamNext().setVisible(true);
-            }
-        });
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -407,5 +426,6 @@ public class Frame_RamNext extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private List<ProductDTO> ramList;
     // End of variables declaration//GEN-END:variables
 }

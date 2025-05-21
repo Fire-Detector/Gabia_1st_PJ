@@ -9,7 +9,15 @@
 */
 package frame;
 
+import database.ProductDAO;
+import database.ProductDTO;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.*;
 
 /**
  *
@@ -94,35 +102,42 @@ public class Frame_Ram extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
         // jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-        Lbl_Ram1.setText("그림 넣어주세요1");
+        ImageIcon ramImg1 = new ImageIcon("src\\etc\\img\\Ram\\corsair.jpg");
+		Image scaled1 = ramImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		Lbl_Ram1.setIcon(new ImageIcon(scaled1));
+		Lbl_Ram1.setText("");
+		ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\Ram\\gskill.jpg");
+		Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		Lbl_Ram2.setIcon(new ImageIcon(scaled2));
+		Lbl_Ram2.setText("");
+		ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\Ram\\samsung.jpg");
+		Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		Lbl_Ram3.setIcon(new ImageIcon(scaled3));
+		Lbl_Ram3.setText("");
 
-        Lbl_Ram2.setText("그림 넣어주세요2");
+        Lbl_Name1.setText("제조사:");
 
-        Lbl_Ram3.setText("그림 넣어주세요3");
+        Lbl_Name2.setText("제조사:");
 
-        Lbl_Name1.setText("이름:");
+        Lbl_Name3.setText("제조사:");
 
-        Lbl_Name2.setText("이름:");
+        Lbl_Price1.setText("제품명:");
 
-        Lbl_Name3.setText("이름:");
+        Lbl_Price2.setText("제품명:");
 
-        Lbl_Price1.setText("가격:");
+        Lbl_Price3.setText("제품명:");
 
-        Lbl_Price2.setText("가격:");
+        Lbl_Info2.setText("출시일:");
 
-        Lbl_Price3.setText("가격:");
+        Lbl_Info3.setText("출시일:");
 
-        Lbl_Info2.setText("정보:");
+        Lbl_Info1.setText("출시일:");
 
-        Lbl_Info3.setText("정보:");
+        Lbl_Exam1.setText("판매가:");
 
-        Lbl_Info1.setText("정보:");
+        Lbl_Exam3.setText("판매가:");
 
-        Lbl_Exam1.setText("설명:");
-
-        Lbl_Exam3.setText("설명:");
-
-        Lbl_Exam2.setText("설명:");
+        Lbl_Exam2.setText("판매가:");
 
         Button_Next.setLabel("다음 페이지");
         Button_Next.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -132,50 +147,49 @@ public class Frame_Ram extends javax.swing.JFrame {
             }
         });
 
-        Btn_Selec1.setText("jButton1");
-        Btn_Selec1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec1ActionPerformed(evt);
-            }
-        });
+        ramList = new ArrayList<>();
+		for (ProductDTO product : Frame_Select.productList) {
+			if (product.getCategoryId() == 3)
+				ramList.add(product);
+		}
 
-        Btn_Selec2.setText("jButton1");
-        Btn_Selec2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec2ActionPerformed(evt);
-            }
-        });
+		ProductDAO productDAO = new ProductDAO();
+		ProductDTO showProduct = ramList.remove(0);
+		jLabel3.setText(showProduct.getProductName());      // product_name
+		jLabel4.setText(showProduct.getManufacturer());     // manufacturer
+		jLabel5.setText(showProduct.getReleaseDate());      // release_date
+		jLabel8.setText(String.valueOf(showProduct.getPrice()));    // price
+		ProductDTO finalShowProduct1 = showProduct;
+		Btn_Selec1.addActionListener(e -> {
+			JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct1.getProductId()) ?
+				"카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+		});
+		Btn_Selec1.setText("추가");
 
-        Btn_Selec3.setText("jButton1");
-        Btn_Selec3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec3ActionPerformed(evt);
-            }
-        });
+		showProduct = ramList.remove(0);
+		jLabel10.setText(showProduct.getManufacturer());      // product_name
+		jLabel11.setText(showProduct.getProductName());     // manufacturer
+		jLabel12.setText(showProduct.getReleaseDate());      // release_date
+		jLabel13.setText(String.valueOf(showProduct.getPrice()));    // price
+		ProductDTO finalShowProduct2 = showProduct;
+		Btn_Selec2.addActionListener(e -> {
+			JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct2.getProductId()) ?
+				"카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+		});
+		Btn_Selec2.setText("추가");
 
-        jLabel4.setText("이름1");
+		showProduct = ramList.remove(0);
+		jLabel14.setText(showProduct.getManufacturer());      // product_name
+		jLabel16.setText(showProduct.getProductName());     // manufacturer
+		jLabel18.setText(showProduct.getReleaseDate());      // release_date
+		jLabel19.setText(String.valueOf(showProduct.getPrice()));    // price
+		ProductDTO finalShowProduct3 = showProduct;
+		Btn_Selec3.addActionListener((e) -> {
+			JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct3.getProductId()) ?
+				"카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
+		});
+		Btn_Selec3.setText("추가");
 
-        jLabel3.setText("가격1");
-
-        jLabel5.setText("정보1");
-
-        jLabel8.setText("설명1");
-
-        jLabel10.setText("이름2");
-
-        jLabel11.setText("가격2");
-
-        jLabel12.setText("정보2");
-
-        jLabel13.setText("설명2");
-
-        jLabel14.setText("이름3");
-
-        jLabel16.setText("가격3");
-
-        jLabel18.setText("정보3");
-
-        jLabel19.setText("설명3");
 
         Btn_MoveSelect.setText("초기화면");
         Btn_MoveSelect.addActionListener(new java.awt.event.ActionListener() {
@@ -340,7 +354,7 @@ public class Frame_Ram extends javax.swing.JFrame {
 
     private void Button_NextActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        Frame_RamNext next = new Frame_RamNext();
+        Frame_RamNext next = new Frame_RamNext(ramList);
         Point location = this.getLocation();
         next.setLocation(location);
         next.setVisible(true);
@@ -440,5 +454,6 @@ public class Frame_Ram extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private List<ProductDTO> ramList;
     // End of variables declaration                   
 }
