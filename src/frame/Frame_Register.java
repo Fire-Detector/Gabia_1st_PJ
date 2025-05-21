@@ -154,10 +154,14 @@ public class Frame_Register extends javax.swing.JFrame {
         if (!isValidPhone){dialogMsg+="전화번호를 000-0000-0000 형식으로 입력해주세요.";}
         if (isValid) {
             if(userDAO.register(user_id, user_password, user_phone, user_gender)){
-                dialogMsg = "회원가입 성공";
+                dialogMsg = "회원가입 성공";   
             } else {
                 dialogMsg = "회원가입 실패";
+                
             }
+            Frame_Login login = new Frame_Login();
+            dispose();
+            login.setVisible(true);                        
         }
         JOptionPane.showMessageDialog(this, dialogMsg);
     }// GEN-LAST:event_Register_BtnActionPerformed
