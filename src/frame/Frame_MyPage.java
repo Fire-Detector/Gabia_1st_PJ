@@ -141,9 +141,8 @@ public class Frame_MyPage extends javax.swing.JFrame {
 	}
 
 	private void Btn_SelecActionPerformed(java.awt.event.ActionEvent evt) {
-		Frame_Select next = new Frame_Select();
-		dispose();
-		next.setVisible(true);
+		this.dispose();
+		select.setVisible(true);
 	}
 
 	private void Btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {

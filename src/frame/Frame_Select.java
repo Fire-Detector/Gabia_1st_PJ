@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class Frame_Select extends javax.swing.JFrame {
@@ -141,7 +142,11 @@ public class Frame_Select extends javax.swing.JFrame {
 			if (totalPrice == 0) {
 				JOptionPane.showMessageDialog(this, "장바구니에 물건이 없습니다.");
 			} else {
-				int answer = JOptionPane.showConfirmDialog(this, "총 가격은 :  " + totalPrice + "입니다.\n" + "구매하시겠습니까?",
+				NumberFormat formatter = NumberFormat.getInstance();
+				String formattedPrice = formatter.format(totalPrice);
+
+				int answer = JOptionPane.showConfirmDialog(this,
+						"총 가격은 : " + formattedPrice + "원입니다.\n구매하시겠습니까?",
 						"구매 확인", JOptionPane.YES_NO_OPTION);
 				if (answer == 0) {
 					try {
