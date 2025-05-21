@@ -10,6 +10,12 @@
 package frame;
 
 import java.awt.*;
+import java.util.List;
+
+import javax.swing.*;
+
+import database.ProductDAO;
+import database.ProductDTO;
 
 /**
  *
@@ -20,8 +26,8 @@ public class Frame_PowerNext extends javax.swing.JFrame {
     /**
      * Creates new form Frame_Cpu
      */
-    public Frame_PowerNext() {
-        initComponents();
+    public Frame_PowerNext(List<ProductDTO> powerList) {
+        initComponents(powerList);
     }
 
     /**
@@ -31,7 +37,7 @@ public class Frame_PowerNext extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(List<ProductDTO> powerList) {
 
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -73,54 +79,48 @@ public class Frame_PowerNext extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
 
-        jLabel7.setText("이름:");
-
-        jLabel9.setText("이름:");
-
-        jLabel15.setText("정보:");
-
-        jLabel17.setText("정보:");
-
-        jLabel20.setText("설명:");
-
-        jButton2.setText("jButton1");
-
-
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel1.setText("GPU");
+        jLabel1.setText("Power");
 
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
-        jLabel2.setText("아이템 추가는 소스에서 추가 가능");
+        // jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-        Lbl_Power4.setText("그림 넣어주세요4");
 
-        Lbl_Power5.setText("그림 넣어주세요5");
+        ImageIcon cpuImg1 = new ImageIcon("src\\etc\\img\\Power\\power4.png");
+        Image scaled1 = cpuImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        Lbl_Power4.setIcon(new ImageIcon(scaled1));
 
-        Lbl_Power6.setText("그림 넣어주세요6");
+        ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\Power\\power5.png");
+        Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        Lbl_Power5.setIcon(new ImageIcon(scaled2));
 
-        Lbl_Name4.setText("이름:");
+        ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\Power\\power6.png");
+        Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        Lbl_Power6.setIcon(new ImageIcon(scaled3));
 
-        Lbl_Name5.setText("이름:");
+        Lbl_Name4.setText("제조사:");
 
-        Lbl_Name6.setText("이름:");
+        Lbl_Name5.setText("제조사:");
 
-        Lbl_Price4.setText("가격:");
+        Lbl_Name6.setText("제조사:");
 
-        Lbl_Price5.setText("가격:");
+        Lbl_Price4.setText("제품명:");
 
-        Lbl_Price6.setText("가격:");
+        Lbl_Price5.setText("제품명:");
 
-        Lbl_Info5.setText("정보:");
+        Lbl_Price6.setText("제품명:");
 
-        Lbl_Info6.setText("정보:");
+        Lbl_Info5.setText("출시일:");
 
-        Lbl_Info4.setText("정보:");
+        Lbl_Info6.setText("출시일:");
 
-        Lbl_Exam4.setText("설명:");
+        Lbl_Info4.setText("출시일:");
 
-        Lbl_Exam6.setText("설명:");
+        Lbl_Exam4.setText("판매가:");
 
-        Lbl_Exam5.setText("설명:");
+        Lbl_Exam6.setText("판매가:");
+
+        Lbl_Exam5.setText("판매가:");
 
         Button_Previous.setText("이전 페이지");
         Button_Previous.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -130,51 +130,43 @@ public class Frame_PowerNext extends javax.swing.JFrame {
             }
         });
 
-        Btn_Selec4.setText("jButton1");
-        Btn_Selec4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec4ActionPerformed(evt);
-            }
+        ProductDAO productDAO = new ProductDAO();
+        ProductDTO showProduct = powerList.remove(0);
+        jLabel3.setText(showProduct.getProductName());      // product_name
+        jLabel4.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel5.setText(showProduct.getReleaseDate());      // release_date
+        jLabel8.setText(String.valueOf(showProduct.getPrice()));    // price
+        ProductDTO finalShowProduct1 = showProduct;
+        Btn_Selec4.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct1.getProductId()) ?
+                "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
         });
+        Btn_Selec4.setText("추가");
 
-        Btn_Selec5.setText("jButton1");
-        Btn_Selec5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec5ActionPerformed(evt);
-            }
+        showProduct = powerList.remove(0);
+        jLabel10.setText(showProduct.getProductName());      // product_name
+        jLabel11.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel12.setText(showProduct.getReleaseDate());      // release_date
+        jLabel13.setText(String.valueOf(showProduct.getPrice()));    // price
+        ProductDTO finalShowProduct2 = showProduct;
+        Btn_Selec5.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct2.getProductId()) ?
+                "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
         });
+        Btn_Selec5.setText("추가");
 
-        Btn_Selec6.setText("jButton1");
-        Btn_Selec6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Selec6ActionPerformed(evt);
-            }
+        showProduct = powerList.remove(0);
+        jLabel14.setText(showProduct.getProductName());      // product_name
+        jLabel16.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel18.setText(showProduct.getReleaseDate());      // release_date
+        jLabel19.setText(String.valueOf(showProduct.getPrice()));    // price
+        ProductDTO finalShowProduct3 = showProduct;
+        Btn_Selec6.addActionListener((e) -> {
+            JOptionPane.showMessageDialog(this, productDAO.addCart(finalShowProduct3.getProductId()) ?
+                "카트에 제품 추가" : "카트에 해당 상품이 이미 담겨 있습니다");
         });
-
-        jLabel4.setText("이름1");
-
-        jLabel3.setText("가격1");
-
-        jLabel5.setText("정보1");
-
-        jLabel8.setText("설명1");
-
-        jLabel10.setText("이름2");
-
-        jLabel11.setText("가격2");
-
-        jLabel12.setText("정보2");
-
-        jLabel13.setText("설명2");
-
-        jLabel14.setText("이름3");
-
-        jLabel16.setText("가격3");
-
-        jLabel18.setText("정보3");
-
-        jLabel19.setText("설명3");
-
+        Btn_Selec6.setText("추가");
+        setPreferredSize(new java.awt.Dimension(600, 550));
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -330,63 +322,8 @@ public class Frame_PowerNext extends javax.swing.JFrame {
         next.setLocation(location);
         next.setVisible(true);
         dispose();
-    }//GEN-LAST:event_Button_PreviousActionPerformed
-
-    private void Btn_Selec6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_Selec6ActionPerformed
-
-    private void Btn_Selec5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_Selec5ActionPerformed
-
-    private void Btn_Selec4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Selec4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_Selec4ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame_PowerNext.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame_PowerNext.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame_PowerNext.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frame_PowerNext.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Frame_PowerNext().setVisible(true);
-            }
-        });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Selec4;
     private javax.swing.JButton Btn_Selec5;
     private javax.swing.JButton Btn_Selec6;

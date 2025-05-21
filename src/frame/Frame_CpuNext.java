@@ -121,23 +121,11 @@ public class Frame_CpuNext extends javax.swing.JFrame {
 		jLabel19 = new javax.swing.JLabel();
 		Btn_MoveSelect = new javax.swing.JButton();
 
-		jLabel7.setText("이름:");
-
-		jLabel9.setText("이름:");
-
-		jLabel15.setText("정보:");
-
-		jLabel17.setText("정보:");
-
-		jLabel20.setText("설명:");
-
-		jButton2.setText("jButton1");
-
 		jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-		jLabel1.setText("GPU");
+		jLabel1.setText("CPU");
 
 		jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
-		jLabel2.setText("아이템 추가는 소스에서 추가 가능");
+		// jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 		ImageIcon cpuImg4 = new ImageIcon("src\\etc\\img\\CPU\\cpu4.jpg");
 		Image scaled4 = cpuImg4.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Cpu4.setIcon(new ImageIcon(scaled4));
@@ -156,29 +144,29 @@ public class Frame_CpuNext extends javax.swing.JFrame {
 		Lbl_Cpu6.setText("");
 		Lbl_Cpu6.setText("그림 넣어주세요6");
 
-		Lbl_Name4.setText("이름:");
+		Lbl_Name4.setText("제조사:");
 
-		Lbl_Name5.setText("이름:");
+		Lbl_Name5.setText("제조사:");
 
-		Lbl_Name6.setText("이름:");
+		Lbl_Name6.setText("제조사:");
 
-		Lbl_Price4.setText("가격:");
+		Lbl_Price4.setText("제품명:");
 
-		Lbl_Price5.setText("가격:");
+		Lbl_Price5.setText("제품명:");
 
-		Lbl_Price6.setText("가격:");
+		Lbl_Price6.setText("제품명:");
 
-		Lbl_Info5.setText("정보:");
+		Lbl_Info5.setText("출시일:");
 
-		Lbl_Info6.setText("정보:");
+		Lbl_Info6.setText("출시일:");
 
-		Lbl_Info4.setText("정보:");
+		Lbl_Info4.setText("출시일:");
 
-		Lbl_Exam4.setText("설명:");
+		Lbl_Exam4.setText("판매가:");
 
-		Lbl_Exam6.setText("설명:");
+		Lbl_Exam6.setText("판매가:");
 
-		Lbl_Exam5.setText("설명:");
+		Lbl_Exam5.setText("판매가:");
 
 		Button_Previous.setText("이전 페이지");
 		Button_Previous.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -231,7 +219,7 @@ public class Frame_CpuNext extends javax.swing.JFrame {
 				Btn_MoveSelectActionPerformed(evt);
 			}
 		});
-
+		setPreferredSize(new java.awt.Dimension(600, 550));
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
@@ -272,37 +260,36 @@ public class Frame_CpuNext extends javax.swing.JFrame {
 									.addComponent(Lbl_Name4)
 									.addComponent(Lbl_Exam4)
 									.addComponent(Lbl_Price4)
-									.addComponent(Lbl_Info4)))))
+									.addComponent(Lbl_Info4))))
+						.addComponent(Btn_MoveSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+							javax.swing.GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(jLabel16)
-						.addComponent(jLabel18)
-						.addComponent(jLabel19)
-						.addComponent(jLabel14)
-						.addComponent(jLabel12)
-						.addComponent(jLabel13)
-						.addComponent(jLabel11)
-						.addComponent(jLabel10)
-						.addComponent(jLabel8)
-						.addComponent(jLabel3)
-						.addComponent(jLabel5)
-						.addComponent(jLabel4))
-					.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addComponent(Btn_Selec6)
-						.addComponent(Btn_Selec5)
-						.addComponent(Btn_Selec4))
-					.addGap(24, 24, 24))
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(Button_Previous, javax.swing.GroupLayout.PREFERRED_SIZE,
-						javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-					.addComponent(Btn_MoveSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-						javax.swing.GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+						.addGroup(layout.createSequentialGroup()
+							.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addComponent(jLabel16)
+								.addComponent(jLabel18)
+								.addComponent(jLabel19)
+								.addComponent(jLabel14)
+								.addComponent(jLabel12)
+								.addComponent(jLabel13)
+								.addComponent(jLabel11)
+								.addComponent(jLabel10)
+								.addComponent(jLabel8)
+								.addComponent(jLabel3)
+								.addComponent(jLabel5)
+								.addComponent(jLabel4))
+							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addComponent(Btn_Selec6)
+								.addComponent(Btn_Selec5)
+								.addComponent(Btn_Selec4)))
+						.addGroup(layout.createSequentialGroup()
+							.addGap(0, 0, Short.MAX_VALUE)
+							.addComponent(Button_Previous, javax.swing.GroupLayout.PREFERRED_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+					.addGap(24, 24, 24)));
 		layout.setVerticalGroup(
 			layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
@@ -334,11 +321,7 @@ public class Frame_CpuNext extends javax.swing.JFrame {
 										.addComponent(Lbl_Cpu6, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
 											javax.swing.GroupLayout.PREFERRED_SIZE)
 										.addComponent(Lbl_Info6))
-									.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(Button_Previous, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-									.addComponent(Btn_MoveSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
 								.addGroup(layout.createSequentialGroup()
 									.addComponent(Lbl_Name6)
 									.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -387,12 +370,13 @@ public class Frame_CpuNext extends javax.swing.JFrame {
 							.addComponent(jLabel5)
 							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(jLabel8)))
+					.addGap(18, 18, 18)
 					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(Button_Previous, javax.swing.GroupLayout.PREFERRED_SIZE,
+							javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addComponent(Btn_MoveSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
 							javax.swing.GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-
-		);
+					.addContainerGap(10, Short.MAX_VALUE)));
 
 		jLabel1.getAccessibleContext().setAccessibleName("");
 

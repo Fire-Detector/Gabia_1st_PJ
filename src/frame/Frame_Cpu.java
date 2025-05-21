@@ -104,13 +104,13 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		jLabel19 = new javax.swing.JLabel();
 		Btn_MoveSelect = new javax.swing.JButton();
 
-		setPreferredSize(new java.awt.Dimension(450, 480));
+		setPreferredSize(new java.awt.Dimension(600, 550));
 
 		jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
 		jLabel1.setText("CPU");
 
 		jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
-		jLabel2.setText("아이템 추가는 소스에서 추가 가능");
+		// jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
 		ImageIcon cpuImg1 = new ImageIcon("src\\etc\\img\\CPU\\cpu1.png");
 		Image scaled1 = cpuImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -148,14 +148,6 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		Lbl_Exam3.setText("판매가:");
 
 		Lbl_Exam2.setText("판매가:");
-
-		Button_Next.setLabel("다음 페이지");
-		Button_Next.setPreferredSize(new java.awt.Dimension(100, 30));
-		Button_Next.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				Button_NextActionPerformed(evt);
-			}
-		});
 
 		cpuList = new ArrayList<>();
 		for (ProductDTO product : Frame_Select.productList) {
@@ -204,6 +196,14 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		Btn_MoveSelect.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				Btn_MoveSelectActionPerformed(evt);
+			}
+		});
+
+		Button_Next.setLabel("다음 페이지");
+		Button_Next.setPreferredSize(new java.awt.Dimension(100, 30));
+		Button_Next.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				Button_NextActionPerformed(evt);
 			}
 		});
 
@@ -277,90 +277,91 @@ public class Frame_Cpu extends javax.swing.JFrame {
 						.addComponent(Button_Next, javax.swing.GroupLayout.PREFERRED_SIZE,
 							javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
 				.addGap(24, 24, 24)));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-			.addGroup(layout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-					.addComponent(jLabel1)
-					.addComponent(jLabel2))
-				.addGap(18, 18, 18)
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-					.addGroup(layout.createSequentialGroup()
-						.addComponent(Lbl_Cpu1, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-							javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(18, 18, 18)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-							.addComponent(Lbl_Cpu2, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+		layout.setVerticalGroup(
+			layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+						.addComponent(jLabel1)
+						.addComponent(jLabel2))
+					.addGap(18, 18, 18)
+					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(Lbl_Cpu1, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
-							.addGroup(layout.createSequentialGroup()
-								.addComponent(Lbl_Name2)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(Lbl_Price2)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(Lbl_Info2)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(Lbl_Exam2)))
-						.addGap(18, 18, 18)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-							.addComponent(Lbl_Cpu3, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-							.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+							.addGap(18, 18, 18)
+							.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addComponent(Lbl_Cpu2, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+									javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addGroup(layout.createSequentialGroup()
-									.addComponent(jLabel14)
+									.addComponent(Lbl_Name2)
 									.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(jLabel16)
+									.addComponent(Lbl_Price2)
 									.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(jLabel18)
+									.addComponent(Lbl_Info2)
 									.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(jLabel19))
+									.addComponent(Lbl_Exam2)))
+							.addGap(18, 18, 18)
+							.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addComponent(Lbl_Cpu3, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+									javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+									.addGroup(layout.createSequentialGroup()
+										.addComponent(jLabel14)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(jLabel16)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(jLabel18)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(jLabel19))
+									.addGroup(layout.createSequentialGroup()
+										.addComponent(Lbl_Name3)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(Lbl_Price3)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(Lbl_Info3)
+										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(Lbl_Exam3)))))
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(Lbl_Name1)
+							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 								.addGroup(layout.createSequentialGroup()
-									.addComponent(Lbl_Name3)
+									.addComponent(Lbl_Price1)
 									.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(Lbl_Price3)
+									.addComponent(Lbl_Info1)
 									.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(Lbl_Info3)
-									.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(Lbl_Exam3)))))
-					.addGroup(layout.createSequentialGroup()
-						.addComponent(Lbl_Name1)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-							.addGroup(layout.createSequentialGroup()
-								.addComponent(Lbl_Price1)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(Lbl_Info1)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(Lbl_Exam1))
-							.addGroup(layout.createSequentialGroup()
-								.addComponent(Btn_Selec1)
-								.addGap(95, 95, 95)
-								.addComponent(Btn_Selec2)
-								.addGap(95, 95, 95)
-								.addComponent(Btn_Selec3))))
-					.addGroup(layout.createSequentialGroup()
-						.addGap(118, 118, 118)
-						.addComponent(jLabel10)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jLabel11)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jLabel12)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jLabel13))
-					.addGroup(layout.createSequentialGroup()
-						.addComponent(jLabel4)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jLabel3)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jLabel5)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jLabel8)))
-				.addGap(18, 18, 18)
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-					.addComponent(Button_Next, javax.swing.GroupLayout.PREFERRED_SIZE,
-						javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-					.addComponent(Btn_MoveSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-						javax.swing.GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(10, Short.MAX_VALUE)));
+									.addComponent(Lbl_Exam1))
+								.addGroup(layout.createSequentialGroup()
+									.addComponent(Btn_Selec1)
+									.addGap(95, 95, 95)
+									.addComponent(Btn_Selec2)
+									.addGap(95, 95, 95)
+									.addComponent(Btn_Selec3))))
+						.addGroup(layout.createSequentialGroup()
+							.addGap(118, 118, 118)
+							.addComponent(jLabel10)
+							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(jLabel11)
+							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(jLabel12)
+							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(jLabel13))
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(jLabel4)
+							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(jLabel3)
+							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(jLabel5)
+							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(jLabel8)))
+					.addGap(18, 18, 18)
+					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addComponent(Button_Next, javax.swing.GroupLayout.PREFERRED_SIZE,
+							javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addComponent(Btn_MoveSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+							javax.swing.GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(10, Short.MAX_VALUE)));
 
 		jLabel1.getAccessibleContext().setAccessibleName("");
 
@@ -388,6 +389,8 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		// TODO add your handling code here:
 	}
 
-	private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) { dispose(); }
+	private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) {
+		dispose();
+	}
 	// End of variables declaration
 }

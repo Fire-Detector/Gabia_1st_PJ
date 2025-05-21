@@ -27,6 +27,7 @@ public class Frame_Select extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel3;
 	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JButton Btn_Buy;
 	private JLabel lblCart;
 	private JTable productTable;
 
@@ -72,6 +73,7 @@ public class Frame_Select extends javax.swing.JFrame {
 		Btn_Power = new javax.swing.JButton();
 		Btn_Disk = new javax.swing.JButton();
 		Btn_Delete = new javax.swing.JButton();
+		Btn_Buy = new javax.swing.JButton();
 		jLabel1 = new javax.swing.JLabel();
 		jLabel3 = new javax.swing.JLabel();
 		jButton7 = new javax.swing.JButton();
@@ -84,6 +86,9 @@ public class Frame_Select extends javax.swing.JFrame {
 
 		CartDAO cartDAO = new CartDAO();
 		List<ProductDTO> cartItems = cartDAO.getCartProducts();
+
+		Btn_Buy.setText("구매하기");
+		Btn_Buy.setFont(new java.awt.Font("맑은 고딕", 0, 16));
 
 		lblCart = new JLabel("장바구니");
 		lblCart.setFont(new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 18));
@@ -145,7 +150,7 @@ public class Frame_Select extends javax.swing.JFrame {
 				e.printStackTrace();
 			}
 		});
-
+		setPreferredSize(new java.awt.Dimension(750, 650));
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
@@ -178,8 +183,9 @@ public class Frame_Select extends javax.swing.JFrame {
 							.addContainerGap()
 							.addComponent(lblCart)
 							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130,
-								javax.swing.GroupLayout.PREFERRED_SIZE))
+							.addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+							.addComponent(Btn_Buy, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGroup(layout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
@@ -223,8 +229,8 @@ public class Frame_Select extends javax.swing.JFrame {
 					.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
 					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
 						.addComponent(lblCart)
-						.addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
-							javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addComponent(Btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addComponent(Btn_Buy, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
 					.addGap(10)
 					.addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
 					.addContainerGap()
@@ -305,7 +311,7 @@ public class Frame_Select extends javax.swing.JFrame {
 
 	private void Btn_MyPage(java.awt.event.ActionEvent evt) throws SQLException {
 		System.out.println("MyPage btn clicked: " + Frame_Login.loginUser);
-		Frame_MyPage next = new Frame_MyPage();
+		Frame_MyPage next = new Frame_MyPage(this);
         Point location = this.getLocation();
         next.setLocation(location);
 		next.setVisible(true);

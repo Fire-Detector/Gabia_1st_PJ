@@ -157,9 +157,7 @@ public class Frame_Register extends javax.swing.JFrame {
                 dialogMsg = "회원가입 실패";
                 
             }
-            Frame_Login login = new Frame_Login();
             dispose();
-            login.setVisible(true);                        
         }
         JOptionPane.showMessageDialog(this, dialogMsg);
     }// GEN-LAST:event_Register_BtnActionPerformed
