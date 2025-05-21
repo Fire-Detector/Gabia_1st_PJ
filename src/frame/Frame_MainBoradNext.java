@@ -189,21 +189,21 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
             }
         });
 
-        Btn_Selec4.setText("jButton1");
+        Btn_Selec4.setText("추가");
         Btn_Selec4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_Selec4ActionPerformed(evt);
             }
         });
 
-        Btn_Selec5.setText("jButton1");
+        Btn_Selec5.setText("추가");
         Btn_Selec5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_Selec5ActionPerformed(evt);
             }
         });
 
-        Btn_Selec6.setText("jButton1");
+        Btn_Selec6.setText("추가");
         Btn_Selec6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_Selec6ActionPerformed(evt);
