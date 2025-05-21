@@ -6,6 +6,7 @@ public class Main {
         SimpleConnectionPool.connectionPool = new SimpleConnectionPool();
         System.out.println(SimpleConnectionPool.connectionPool.getConnection());
         Frame_Login LoginFrame = new Frame_Login();
+        LoginFrame.setLocationRelativeTo(null);
         LoginFrame.setVisible(true);
         
     }

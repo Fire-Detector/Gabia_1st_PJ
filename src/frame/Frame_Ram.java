@@ -86,13 +86,13 @@ public class Frame_Ram extends javax.swing.JFrame {
 
         jButton2.setText("jButton1");
 
-        setPreferredSize(new java.awt.Dimension(450, 480));
+        setPreferredSize(new java.awt.Dimension(600, 550));
 
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel1.setText("GPU");
+        jLabel1.setText("RAM");
 
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
-        jLabel2.setText("아이템 추가는 소스에서 추가 가능");
+        // jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
         Lbl_Ram1.setText("그림 넣어주세요1");
 

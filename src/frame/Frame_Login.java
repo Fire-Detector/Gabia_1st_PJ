@@ -93,7 +93,7 @@ public class Frame_Login extends javax.swing.JFrame {
 
             Point location = this.getLocation();
             Frame_Select next = new Frame_Select();
-            next.setLocation(location);
+            next.setLocationRelativeTo(null);
             next.setVisible(true);
             dispose();
         } else {

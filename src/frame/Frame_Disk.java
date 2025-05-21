@@ -84,24 +84,11 @@ public class Frame_Disk extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         Btn_MoveSelect = new javax.swing.JButton();
 
-        jLabel7.setText("이름:");
-
-        jLabel9.setText("이름:");
-
-        jLabel15.setText("정보:");
-
-        jLabel17.setText("정보:");
-
-        jLabel20.setText("설명:");
-
-        jButton2.setText("jButton1");
-
-
         jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
-        jLabel1.setText("DISK");
+        jLabel1.setText("Disk");
 
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
-        jLabel2.setText("아이템 추가는 소스에서 추가 가능");
+        // jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
         ImageIcon icon = new ImageIcon("src\\etc\\img\\Disk\\삼성 990 PRO 1TB.jpeg");
         Image Image = icon.getImage();
@@ -124,31 +111,31 @@ public class Frame_Disk extends javax.swing.JFrame {
         Lbl_Disk3.setIcon(resizedIcon2);
         Lbl_Disk3.setText("");
 
-        Lbl_Name1.setText("이름:");
+        Lbl_Name1.setText("제조사:");
 
-        Lbl_Name2.setText("이름:");
+        Lbl_Name2.setText("제조사:");
 
-        Lbl_Name3.setText("이름:");
+        Lbl_Name3.setText("제조사:");
 
-        Lbl_Price1.setText("가격:");
+        Lbl_Price1.setText("제품명:");
 
-        Lbl_Price2.setText("가격:");
+        Lbl_Price2.setText("제품명:");
 
-        Lbl_Price3.setText("가격:");
+        Lbl_Price3.setText("제품명:");
 
-        Lbl_Info2.setText("정보:");
+        Lbl_Info2.setText("출시일:");
 
-        Lbl_Info3.setText("정보:");
+        Lbl_Info3.setText("출시일:");
 
-        Lbl_Info1.setText("정보:");
+        Lbl_Info1.setText("출시일:");
 
-        Lbl_Exam1.setText("설명:");
+        Lbl_Exam1.setText("판매가:");
 
-        Lbl_Exam3.setText("설명:");
+        Lbl_Exam3.setText("판매가:");
 
-        Lbl_Exam2.setText("설명:");
+        Lbl_Exam2.setText("판매가:");
 
-        setPreferredSize(new java.awt.Dimension(430, 470));
+        setPreferredSize(new java.awt.Dimension(600, 550));
 
         Button_Next.setLabel("다음 페이지");
         Button_Next.setPreferredSize(new java.awt.Dimension(100, 30));
