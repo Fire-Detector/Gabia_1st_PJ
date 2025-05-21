@@ -9,13 +9,11 @@
 */
 package frame;
 
-import java.awt.*;
-import java.util.List;
-
-import javax.swing.*;
-
 import database.ProductDAO;
 import database.ProductDTO;
+import java.awt.*;
+import java.util.List;
+import javax.swing.*;
 
 /**
  *
@@ -144,8 +142,8 @@ public class Frame_PowerNext extends javax.swing.JFrame {
         Btn_Selec4.setText("추가");
 
         showProduct = powerList.remove(0);
-        jLabel10.setText(showProduct.getProductName());      // product_name
-        jLabel11.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel10.setText(showProduct.getManufacturer());      // product_name
+        jLabel11.setText(showProduct.getProductName());     // manufacturer
         jLabel12.setText(showProduct.getReleaseDate());      // release_date
         jLabel13.setText(String.valueOf(showProduct.getPrice()));    // price
         ProductDTO finalShowProduct2 = showProduct;
@@ -156,8 +154,8 @@ public class Frame_PowerNext extends javax.swing.JFrame {
         Btn_Selec5.setText("추가");
 
         showProduct = powerList.remove(0);
-        jLabel14.setText(showProduct.getProductName());      // product_name
-        jLabel16.setText(showProduct.getManufacturer());     // manufacturer
+        jLabel14.setText(showProduct.getManufacturer());      // product_name
+        jLabel16.setText(showProduct.getProductName());     // manufacturer
         jLabel18.setText(showProduct.getReleaseDate());      // release_date
         jLabel19.setText(String.valueOf(showProduct.getPrice()));    // price
         ProductDTO finalShowProduct3 = showProduct;
