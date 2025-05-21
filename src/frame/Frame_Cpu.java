@@ -14,7 +14,6 @@ import database.ProductDAO;
 import database.ProductDTO;
 
 import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,9 +107,6 @@ public class Frame_Cpu extends javax.swing.JFrame {
 
 		jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18)); // NOI18N
 		jLabel1.setText("CPU");
-
-		jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
-		jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
 		ImageIcon cpuImg1 = new ImageIcon("src\\etc\\img\\CPU\\cpu1.png");
 		Image scaled1 = cpuImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -372,18 +368,6 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		Frame_CpuNext next = new Frame_CpuNext(cpuList);
 		dispose();
 		next.setVisible(true);
-	}
-
-	private void Btn_Selec1ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	private void Btn_Selec2ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	private void Btn_Selec3ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
 	}
 
 	private void Btn_MoveSelectActionPerformed(java.awt.event.ActionEvent evt) {
