@@ -162,8 +162,8 @@ public class Frame_Gpu extends javax.swing.JFrame {
        
         ProductDAO productDAO = new ProductDAO();
         ProductDTO showProduct = gpuList.remove(0);
-        jLabel4.setText(showProduct.getProductName());
-        jLabel3.setText(showProduct.getManufacturer());
+        jLabel4.setText(showProduct.getManufacturer());
+        jLabel3.setText(showProduct.getProductName());
         jLabel5.setText(showProduct.getReleaseDate());
         jLabel8.setText(String.valueOf(showProduct.getPrice()));
         ProductDTO finalShowProduct1 = showProduct;
@@ -172,8 +172,8 @@ public class Frame_Gpu extends javax.swing.JFrame {
         });
         
         showProduct = gpuList.remove(0);
-        jLabel10.setText(showProduct.getProductName());
-        jLabel11.setText(showProduct.getManufacturer());
+        jLabel10.setText(showProduct.getManufacturer());
+        jLabel11.setText(showProduct.getProductName());
         jLabel12.setText(showProduct.getReleaseDate());
         jLabel13.setText(String.valueOf(showProduct.getPrice()));
         ProductDTO finalShowProduct2 = showProduct;
@@ -182,8 +182,8 @@ public class Frame_Gpu extends javax.swing.JFrame {
         });
 
         showProduct = gpuList.remove(0);
-        jLabel14.setText(showProduct.getProductName());
-        jLabel16.setText(showProduct.getManufacturer());
+        jLabel14.setText(showProduct.getManufacturer());
+        jLabel16.setText(showProduct.getProductName());
         jLabel18.setText(showProduct.getReleaseDate());
         jLabel19.setText(String.valueOf(showProduct.getPrice()));
         ProductDTO finalShowProduct3 = showProduct;
