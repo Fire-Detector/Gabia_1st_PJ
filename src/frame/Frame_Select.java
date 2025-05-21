@@ -86,10 +86,6 @@ public class Frame_Select extends javax.swing.JFrame {
 		CartDAO cartDAO = new CartDAO();
 		List<ProductDTO> cartItems = cartDAO.getCartProducts();
 
-		// int totalPrice = cartItems.stream().mapToInt(ProductDTO::getPrice).sum();
-		// System.out.println("총 가격: " + totalPrice);
-		// System.out.println();
-
 		lblCart = new JLabel("장바구니");
 		lblCart.setFont(new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 18));
 
@@ -146,10 +142,7 @@ public class Frame_Select extends javax.swing.JFrame {
 			if (answer == 0) {
 				try {
 					cartDAO.cartBuying(Frame_Login.loginUser.getUser_id());
-					Frame_Select refreshedFrame = new Frame_Select();
-					dispose(); // 현재 프레임 닫기
-					refreshedFrame.setLocationRelativeTo(null); // 위치 지정 (원한다면 이전 위치로)
-					refreshedFrame.setVisible(true); // 새로 띄우기
+					loadCartData();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
