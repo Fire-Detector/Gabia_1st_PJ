@@ -87,21 +87,21 @@ public class Frame_GpuNext extends javax.swing.JFrame {
         // jLabel2.setText("아이템 추가는 소스에서 추가 가능");
         
         
-        ImageIcon icon3 = new ImageIcon("src\\etc\\img\\GPU\\rx9070.jpg");
+        ImageIcon icon3 = new ImageIcon(getClass().getResource("/images/GPU/rx9070.jpg"));
         Image Image3 = icon3.getImage();
         Image resizeImage3 = Image3.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon3 = new ImageIcon(resizeImage3);
         Lbl_Gpu4.setIcon(resizedIcon3);
         Lbl_Gpu4.setText("");
 
-        ImageIcon icon4 = new ImageIcon("src\\etc\\img\\GPU\\rtx4070.jpg");
+        ImageIcon icon4 = new ImageIcon(getClass().getResource("/images/GPU/rtx4070.jpg"));
         Image Image4 = icon4.getImage();
         Image resizeImage4 = Image4.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon4 = new ImageIcon(resizeImage4);
         Lbl_Gpu5.setIcon(resizedIcon4);
         Lbl_Gpu5.setText("");
 
-        ImageIcon icon5 = new ImageIcon("src\\etc\\img\\GPU\\a770.jpg");
+        ImageIcon icon5 = new ImageIcon(getClass().getResource("/images/GPU/a770.jpg"));
         Image Image5 = icon5.getImage();
         Image resizeImage5 = Image5.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon5 = new ImageIcon(resizeImage5);

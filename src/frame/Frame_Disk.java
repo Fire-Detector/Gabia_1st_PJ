@@ -88,21 +88,21 @@ public class Frame_Disk extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
         // jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-        ImageIcon icon = new ImageIcon("src\\etc\\img\\Disk\\삼성 990 PRO 1TB.jpeg");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/Disk/삼성 990 PRO 1TB.jpeg"));
         Image Image = icon.getImage();
         Image resizeImage = Image.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(resizeImage);
         Lbl_Disk1.setIcon(resizedIcon);
         Lbl_Disk1.setText("");
         
-        ImageIcon icon1 = new ImageIcon("src\\etc\\img\\Disk\\WD Blue.jpeg");
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/images/Disk/WD Blue.jpeg"));
         Image Image1 = icon1.getImage();
         Image resizeImage1 = Image1.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon1 = new ImageIcon(resizeImage1);
         Lbl_Disk2.setIcon(resizedIcon1);
         Lbl_Disk2.setText("");
         
-        ImageIcon icon2 = new ImageIcon("src\\etc\\img\\Disk\\Toshiba X300 6TB.jpeg");
+        ImageIcon icon2 = new ImageIcon(getClass().getResource("/images/Disk/Toshiba X300 6TB.jpeg"));
         Image Image2 = icon2.getImage();
         Image resizeImage2 = Image2.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon2 = new ImageIcon(resizeImage2);

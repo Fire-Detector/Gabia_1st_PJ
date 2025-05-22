@@ -85,21 +85,21 @@ public class Frame_MainBoradNext extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
         // jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-        ImageIcon icon3 = new ImageIcon("src\\etc\\img\\Board\\GIGABYTE 정품 기가바이트 B650M K 제이씨현 M-ATX DDR5 AMD.JPG");
+        ImageIcon icon3 = new ImageIcon(getClass().getResource("/images/Board/GIGABYTE 정품 기가바이트 B650M K 제이씨현 M-ATX DDR5 AMD.JPG"));
         Image Image3 = icon3.getImage();
         Image resizeImage3 = Image3.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon3 = new ImageIcon(resizeImage3);
         Lbl_MainBoard4.setIcon(resizedIcon3);
         Lbl_MainBoard4.setText("");
         
-        ImageIcon icon4 = new ImageIcon("src\\etc\\img\\Board\\Gigabyte AORUS X890 Master.JPG");
+        ImageIcon icon4 = new ImageIcon(getClass().getResource("/images/Board/Gigabyte AORUS X890 Master.JPG"));
         Image Image4 = icon4.getImage();
         Image resizeImage4= Image4.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon4 = new ImageIcon(resizeImage4);
         Lbl_MainBoard5.setIcon(resizedIcon4);
         Lbl_MainBoard5.setText("");
 
-        ImageIcon icon5 = new ImageIcon("src\\etc\\img\\Board\\MSI MAG Z890 TOMAHAWK WIFI.JPG");
+        ImageIcon icon5 = new ImageIcon(getClass().getResource("/images/Board/MSI MAG Z890 TOMAHAWK WIFI.JPG"));
         Image Image5 = icon5.getImage();
         Image resizeImage5 = Image5.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon5 = new ImageIcon(resizeImage5);

@@ -102,15 +102,15 @@ public class Frame_Ram extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
         // jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-        ImageIcon ramImg1 = new ImageIcon("src\\etc\\img\\Ram\\corsair.jpg");
+        ImageIcon ramImg1 = new ImageIcon(getClass().getResource("/images/Ram/corsair.jpg"));
 		Image scaled1 = ramImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Ram1.setIcon(new ImageIcon(scaled1));
 		Lbl_Ram1.setText("");
-		ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\Ram\\gskill.jpg");
+		ImageIcon cpuImg2 = new ImageIcon(getClass().getResource("/images/Ram/gskill.jpg"));
 		Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Ram2.setIcon(new ImageIcon(scaled2));
 		Lbl_Ram2.setText("");
-		ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\Ram\\samsung.jpg");
+		ImageIcon cpuImg3 = new ImageIcon(getClass().getResource("/images/Ram/samsung.jpg"));
 		Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Ram3.setIcon(new ImageIcon(scaled3));
 		Lbl_Ram3.setText("");
