@@ -46,10 +46,11 @@ public class CartDAO {
     public List<ProductDTO> getCartProducts() {
         List<ProductDTO> products = new ArrayList<>();
         String sql = "SELECT p.product_id, p.product_name, p.manufacturer, " +
-                "p.spec, p.release_date, p.price, p.category_id " +
+                "p.spec, p.release_date, p.price, cg.name " +
                 "FROM cart c " +
                 "JOIN cart_has_product chp ON c.cart_id = chp.cart_id " +
                 "JOIN product p ON chp.product_id = p.product_id " +
+                "JOIN category cg ON p.category_id = cg.category_id " +
                 "WHERE c.user_id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -78,7 +79,7 @@ public class CartDAO {
         product.setSpec(rs.getString("spec"));
         product.setReleaseDate(rs.getString("release_date"));
         product.setPrice(rs.getInt("price"));
-        product.setCategoryId(rs.getInt("category_id"));
+        product.setCategoryName(rs.getString("name"));
         return product;
     }
 

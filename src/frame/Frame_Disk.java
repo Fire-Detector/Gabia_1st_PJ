@@ -9,12 +9,10 @@
 */
 package frame;
 
-import database.Disk_02;
 import database.ProductDAO;
 import database.ProductDTO;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
