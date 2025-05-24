@@ -121,15 +121,15 @@ public class Frame_Power extends javax.swing.JFrame {
         }
 
 
-        ImageIcon cpuImg1 = new ImageIcon("src\\etc\\img\\Power\\power1.png");
+        ImageIcon cpuImg1 = new ImageIcon(getClass().getResource("/images/Power/power1.png"));
         Image scaled1 = cpuImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Power1.setIcon(new ImageIcon(scaled1));
 
-        ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\Power\\power2.png");
+        ImageIcon cpuImg2 = new ImageIcon(getClass().getResource("/images/Power/power2.png"));
         Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Power2.setIcon(new ImageIcon(scaled2));
 
-        ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\Power\\power3.png");
+        ImageIcon cpuImg3 = new ImageIcon(getClass().getResource("/images/Power/power3.png"));
         Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         Lbl_Power3.setIcon(new ImageIcon(scaled3));
 

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class Frame_Register extends javax.swing.JFrame {
 
-	boolean a;
+	boolean a = true;
     UserDAO userDAO = new UserDAO();
     public Frame_Register() {
         initComponents();
@@ -31,7 +31,6 @@ public class Frame_Register extends javax.swing.JFrame {
         Radio_Female = new javax.swing.JRadioButton();
         Radio_Female.setText("여자");
         Register_Id = new javax.swing.JTextField();
-        Register_Id.addActionListener(evt -> Register_IdActionPerformed(evt));
         Regsiter_Phone = new javax.swing.JTextField();
         Register_Password = new javax.swing.JPasswordField();
         Register_Btn = new javax.swing.JButton();
@@ -118,16 +117,9 @@ public class Frame_Register extends javax.swing.JFrame {
         pack();
     }
 
-    private void Register_IdActionPerformed(java.awt.event.ActionEvent evt) {
-
-        this.a = userDAO.IdCheck1(Register_Id.getText());
-        System.out.println(a);
-    }
-
     private void Register_CheckActionPerformed(java.awt.event.ActionEvent evt) {
 
         this.a = userDAO.IdCheck1(Register_Id.getText());
-        System.out.println(a);
     }
 
 
@@ -147,6 +139,7 @@ public class Frame_Register extends javax.swing.JFrame {
         boolean isValidGender = isMale != isFemale;
         boolean isValid = isValidID && isValidPhone && isValidGender;
         String dialogMsg = "";
+        if (a){dialogMsg+="아이디 중복체크를 진행해주세요.\n";}
         if (!isValidGender){dialogMsg+="하나의 성별을 선택해주세요.\n";}
         if (!isValidID){dialogMsg+="비밀번호는 8자 이상, 영문자/숫자/특수문자를 포함해야 합니다.\n";}
         if (!isValidPhone){dialogMsg+="전화번호를 000-0000-0000 형식으로 입력해주세요.";}

@@ -47,13 +47,13 @@ public class Frame_Select extends javax.swing.JFrame {
 			if (cartItems != null && !cartItems.isEmpty()) {
 				for (ProductDTO product : cartItems) {
 					Object[] rowData = {
-						product.getProductId(),
 						product.getProductName(),
 						product.getManufacturer(),
 						product.getSpec(),
 						product.getReleaseDate(),
 						String.format("%,d 원", product.getPrice()),
-						product.getCategoryName()
+						product.getCategoryName(),
+						product.getProductId()
 					};
 					tableModel.addRow(rowData);
 				}
@@ -66,17 +66,17 @@ public class Frame_Select extends javax.swing.JFrame {
 	private void initComponents() {
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jEditorPane1 = new javax.swing.JEditorPane();
-		Btn_Ram = new javax.swing.JButton();
-		Btn_Cpu = new javax.swing.JButton();
-		Btn_MainBoard = new javax.swing.JButton();
-		Btn_Gpu = new javax.swing.JButton();
-		Btn_Power = new javax.swing.JButton();
-		Btn_Disk = new javax.swing.JButton();
-		Btn_Delete = new javax.swing.JButton();
-		Btn_Buy = new javax.swing.JButton();
+		Btn_Ram = new ShadowButton("RAM");
+		Btn_Cpu = new ShadowButton("RAM");
+		Btn_MainBoard = new ShadowButton("RAM");
+		Btn_Gpu = new ShadowButton("RAM");
+		Btn_Power = new ShadowButton("RAM");
+		Btn_Disk = new ShadowButton("RAM");
+		Btn_Delete = new ShadowButton("RAM");
+		Btn_Buy = new ShadowButton("RAM");
 		jLabel1 = new javax.swing.JLabel();
 		jLabel3 = new javax.swing.JLabel();
-		jButton7 = new javax.swing.JButton();
+		jButton7 = new ShadowButton("정보");
 		jScrollPane1.setViewportView(jEditorPane1);
 
 		if (productList == null) {
@@ -85,14 +85,15 @@ public class Frame_Select extends javax.swing.JFrame {
 		}
 
 		CartDAO cartDAO = new CartDAO();
+		setContentPane(new BackgroundPanel(getClass().getResource("/images/General/GearTop.png")));
 
 		lblCart = new JLabel("장바구니");
-		lblCart.setFont(new java.awt.Font("맑은 고딕", java.awt.Font.BOLD, 18));
+		lblCart.setFont(new java.awt.Font("바탕", 0, 18));
 
 		String[] columns = {
-			// "상품ID",
 			"상품명", "제조사", "스펙",
-			"출시일", "가격", "카테고리"
+			"출시일", "가격", "카테고리",
+			"상품ID"
 		};
 
 		tableModel = new DefaultTableModel(columns, 0) {
@@ -129,11 +130,9 @@ public class Frame_Select extends javax.swing.JFrame {
 		Btn_Disk.addActionListener(evt -> Btn_Disk(evt));
 
 		Btn_Delete.setText("상품 삭제");
-		Btn_Delete.setFont(new java.awt.Font("맑은 고딕", 0, 16));
 		Btn_Delete.addActionListener(evt -> Btn_DeleteActionPerformed(evt));
 
 		Btn_Buy.setText("상품 구매");
-		Btn_Buy.setFont(new java.awt.Font("맑은 고딕", 0, 16));
 		Btn_Buy.addActionListener(evt -> {
 			int totalPrice = cartDAO.getCartProducts().stream().mapToInt(ProductDTO::getPrice).sum();
 			System.out.println("총 가격: " + totalPrice);
@@ -162,14 +161,12 @@ public class Frame_Select extends javax.swing.JFrame {
 			}
 		});
 
-		jLabel1.setFont(new java.awt.Font("맑은 고딕", 1, 18));
+		jLabel1.setFont(new java.awt.Font("HY헤드라인M", 1, 18));
 		jLabel1.setText("");
 
-		jLabel3.setFont(new java.awt.Font("맑은 고딕", 1, 18));
+		jLabel3.setFont(new java.awt.Font("HY헤드라인M", 1, 18));
 		jLabel3.setText("");
 
-		jButton7.setFont(new java.awt.Font("맑은 고딕", 0, 18));
-		jButton7.setText("정보");
 		jButton7.addActionListener(evt -> {
 			try {
 				Btn_MyPage(evt);
@@ -186,23 +183,23 @@ public class Frame_Select extends javax.swing.JFrame {
 					.addGap(31, 31, 31)
 					.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup()
-							.addComponent(Btn_Gpu, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+							.addComponent(Btn_Gpu, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
 							.addGap(18, 18, 18)
-							.addComponent(Btn_Power, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+							.addComponent(Btn_Power, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
 							.addGap(18, 18, 18)
-							.addComponent(Btn_Disk, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+							.addComponent(Btn_Disk, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
 								javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGroup(layout.createSequentialGroup()
-							.addComponent(Btn_Cpu, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+							.addComponent(Btn_Cpu, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
 							.addGap(18, 18, 18)
 							.addComponent(Btn_MainBoard, javax.swing.GroupLayout.PREFERRED_SIZE,
-								100,
+								150,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
 							.addGap(18, 18, 18)
-							.addComponent(Btn_Ram, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+							.addComponent(Btn_Ram, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
 								javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGroup(layout.createSequentialGroup()
 							.addGap(8, 8, 8)
@@ -224,7 +221,7 @@ public class Frame_Select extends javax.swing.JFrame {
 					.addContainerGap(33, Short.MAX_VALUE))
 				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
 					.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 87,
+					.addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 120,
 						javax.swing.GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,6 +273,55 @@ public class Frame_Select extends javax.swing.JFrame {
 		pack();
 	}
 
+	static class ShadowButton extends JButton {
+		public ShadowButton(String text) {
+			super(text);
+			setContentAreaFilled(false);
+			setFocusPainted(false);
+			setBorderPainted(false);
+			setForeground(new Color(27, 38, 54));
+			setFont(new Font("바탕", Font.BOLD , 18));
+			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			setMargin(new Insets(10, 20, 10, 20));
+		}
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			int arc = 10; // 5px radius
+			int shadowSpread = 10; // 그림자 번짐 정도(픽셀)
+			int shadowAlpha = 120; // 그림자 불투명도(0~255, 높을수록 진함)
+			Color shadowColor = new Color(0, 0, 0, shadowAlpha);
+
+			Graphics2D g2 = (Graphics2D) g.create();
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+			// 그림자 여러 겹으로 번짐 효과
+			for (int i = shadowSpread; i > 0; i--) {
+				int alpha = (int) (shadowAlpha * ((float) i / shadowSpread) * 0.6); // 점점 연해지게
+				g2.setColor(new Color(0, 0, 0, alpha));
+				g2.fillRoundRect(
+					i, i,
+					getWidth() - i * 2,
+					getHeight() - i * 2,
+					arc + i, arc + i
+				);
+			}
+
+			// 버튼 배경
+			g2.setColor(Color.WHITE);
+			g2.fillRoundRect(0, 0, getWidth() - shadowSpread / 2, getHeight() - shadowSpread / 2, arc, arc);
+
+			// 버튼 텍스트
+			super.paintComponent(g2);
+			g2.dispose();
+		}
+
+		@Override
+		public void paintBorder(Graphics g) {
+			// 테두리 없음
+		}
+	}
+
 	private void Btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {
 		int selectedRow = productTable.getSelectedRow();
 
@@ -285,7 +331,7 @@ public class Frame_Select extends javax.swing.JFrame {
 		}
 
 		int modelRow = productTable.convertRowIndexToModel(selectedRow);
-		int productId = (int)tableModel.getValueAt(modelRow, 0);
+		int productId = (int)tableModel.getValueAt(modelRow, 6);
 
 		CartDAO cartDAO = new CartDAO();
 		boolean success = cartDAO.deleteProductFromCart(productId);

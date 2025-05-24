@@ -2,6 +2,8 @@ package frame;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -9,7 +11,7 @@ public class BackgroundPanel extends JPanel {
     private Image backgroundImage;
 
     // 경로가 파일 시스템상의 절대 경로일 경우
-    public BackgroundPanel(String filePath) {
+    public BackgroundPanel(URL filePath) {
         backgroundImage = new ImageIcon(filePath).getImage();
     }
 

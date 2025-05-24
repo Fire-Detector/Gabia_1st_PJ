@@ -257,6 +257,8 @@ public class UserDAO {
                         javax.swing.JOptionPane.WARNING_MESSAGE);
                 return true;
             } else {
+                javax.swing.JOptionPane.showConfirmDialog(null, "사용 가능한 아이디 입니다", "중복확인",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
                 return false;
             }
         } catch (Exception e) {

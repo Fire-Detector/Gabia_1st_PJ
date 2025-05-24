@@ -66,6 +66,8 @@ public class Frame_Cpu extends javax.swing.JFrame {
 
 	private void initComponents() {
 
+		setFont(new Font("바탕", Font.BOLD , 12));
+
 		jLabel1 = new javax.swing.JLabel();
 		jLabel2 = new javax.swing.JLabel();
 		Lbl_Cpu1 = new javax.swing.JLabel();
@@ -109,15 +111,15 @@ public class Frame_Cpu extends javax.swing.JFrame {
 		jLabel2.setFont(new java.awt.Font("맑은 고딕", 3, 18)); // NOI18N
 		// jLabel2.setText("아이템 추가는 소스에서 추가 가능");
 
-		ImageIcon cpuImg1 = new ImageIcon("src\\etc\\img\\CPU\\cpu5.jpg");
+		ImageIcon cpuImg1 = new ImageIcon(getClass().getResource("/images/CPU/cpu5.jpg"));
 		Image scaled1 = cpuImg1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Cpu1.setIcon(new ImageIcon(scaled1));
 		Lbl_Cpu1.setText("");
-		ImageIcon cpuImg2 = new ImageIcon("src\\etc\\img\\CPU\\cpu4.jpg");
+		ImageIcon cpuImg2 = new ImageIcon(getClass().getResource("/images/CPU/cpu4.jpg"));
 		Image scaled2 = cpuImg2.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Cpu2.setIcon(new ImageIcon(scaled2));
 		Lbl_Cpu2.setText("");
-		ImageIcon cpuImg3 = new ImageIcon("src\\etc\\img\\CPU\\cpu3.png");
+		ImageIcon cpuImg3 = new ImageIcon(getClass().getResource("/images/CPU/cpu3.png"));
 		Image scaled3 = cpuImg3.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		Lbl_Cpu3.setIcon(new ImageIcon(scaled3));
 		Lbl_Cpu3.setText("");

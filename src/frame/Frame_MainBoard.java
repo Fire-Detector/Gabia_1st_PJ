@@ -93,7 +93,7 @@ public class Frame_MainBoard extends javax.swing.JFrame {
 
         
 
-        ImageIcon icon = new ImageIcon("src\\etc\\img\\Board\\ASRock B760M Pro-A.JPG");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/images/Board/ASRock B760M Pro-A.JPG"));
         Image Image = icon.getImage();
         Image resizeImage = Image.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(resizeImage);
@@ -101,14 +101,14 @@ public class Frame_MainBoard extends javax.swing.JFrame {
         Lbl_MainBoard1.setText("");
 
 
-        ImageIcon icon1 = new ImageIcon("src\\etc\\img\\Board\\ASUS ROG Strix Z890-E Gaming WiFi.JPG");
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/images/Board/ASUS ROG Strix Z890-E Gaming WiFi.JPG"));
         Image Image1 = icon1.getImage();
         Image resizeImage1 = Image1.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon1 = new ImageIcon(resizeImage1);
         Lbl_MainBoard2.setIcon(resizedIcon1);
         Lbl_MainBoard2.setText("");
 
-        ImageIcon icon2 = new ImageIcon("src\\etc\\img\\Board\\ASUS TUF Gaming B650M-PLUS WiFi.JPG");
+        ImageIcon icon2 = new ImageIcon(getClass().getResource("/images/Board/ASUS TUF Gaming B650M-PLUS WiFi.JPG"));
         Image Image2 = icon2.getImage();
         Image resizeImage2 = Image2.getScaledInstance( 100, 80, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon2 = new ImageIcon(resizeImage2);
